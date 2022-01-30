@@ -1,36 +1,20 @@
 package de.wroracer.justenoughtnt.setup;
 
 
-import com.google.common.base.Predicates;
-import de.wroracer.justenoughtnt.JustEnoughTNT;
-import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.data.worldgen.features.OreFeatures;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
-import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
-import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.OreFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
 import net.minecraft.world.level.levelgen.placement.*;
-import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Supplier;
 
 public class ModOres {
 
@@ -39,7 +23,8 @@ public class ModOres {
 
     public static void addOres(final BiomeLoadingEvent event){
 
-        addOre(event, OreFeatures.STONE_ORE_REPLACEABLES,ModBlocks.SILVER_ORE.get().defaultBlockState(), "silver_ore",5,3,90,-50);
+        addOre(event, OreFeatures.STONE_ORE_REPLACEABLES,ModBlocks.SULFUR_ORE.get().defaultBlockState(), "sulfur_ore",5,3,90,0);
+        addOre(event,OreFeatures.DEEPSLATE_ORE_REPLACEABLES,ModBlocks.DEEPSLATE_SULFUR_ORE.get().defaultBlockState(),"deepslate_sulfur_ore",10,6,0,-60);
 
     }
 

@@ -15,21 +15,24 @@ import net.minecraftforge.registries.RegistryObject;
 import java.util.function.Supplier;
 
 public class ModBlocks {
-    public static final RegistryObject<Block> SILVER_ORE = register("silver_ore",()->
-            new Block(BlockBehaviour.Properties.of(Material.STONE)
-                    .strength(3.0f,3.0f)
-                    .sound(SoundType.METAL)
-                    .requiresCorrectToolForDrops()
-            ));
-    public static final RegistryObject<Block> SILVER_BLOCK = register("silver_block",()->
-            new Block(BlockBehaviour.Properties.of(Material.METAL)
-                    .strength(3.0f,3.0f)
-                    .sound(SoundType.METAL)));
-
     public static final RegistryObject<Block> EXAMPLE_TNT = register("example_tnt",()->
             new ExampleTNT(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
                     .sound(SoundType.SAND)
                     .strength(1.0f,1.0f)
+            ));
+
+    public static final RegistryObject<Block> SULFUR_ORE = register("sulfur_ore",()->
+            new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .sound(SoundType.STONE)
+                    .strength(3.0f,3.0f)
+                    .requiresCorrectToolForDrops()
+            ));
+
+    public static final RegistryObject<Block> DEEPSLATE_SULFUR_ORE = register("deepslate_sulfur_ore",()->
+            new Block(BlockBehaviour.Properties.of(Material.STONE)
+                    .sound(SoundType.STONE)
+                    .strength(5.0f,5.0f)
+                    .requiresCorrectToolForDrops()
             ));
 
 

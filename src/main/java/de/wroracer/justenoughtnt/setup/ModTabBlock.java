@@ -10,7 +10,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModTabBlock extends CreativeModeTab {
 
-    public static final ModTabBlock MAIN_TAB = new ModTabBlock(JustEnoughTNT.MOD_ID+".main", ModBlocks.SILVER_ORE);
+    public static final ModTabBlock MAIN_TAB = new ModTabBlock(JustEnoughTNT.MOD_ID+".main", ModBlocks.EXAMPLE_TNT);
 
 
     private final RegistryObject<Block> block;

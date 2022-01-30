@@ -19,13 +19,19 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
 
     @Override
     protected void addTags() {
-        tag(ModTags.Blocks.ORES_SILVER).add(ModBlocks.SILVER_ORE.get());
-        tag(Tags.Blocks.ORES).add(ModBlocks.SILVER_ORE.get());
-        tag(ModTags.Blocks.STORAGE_BLOCKS_SILVER).add(ModBlocks.SILVER_BLOCK.get());
-        tag(Tags.Blocks.STORAGE_BLOCKS).addTag(ModTags.Blocks.STORAGE_BLOCKS_SILVER);
+        tag(BlockTags.NEEDS_IRON_TOOL)
+                .add(ModBlocks.SULFUR_ORE.get())
+                .add(ModBlocks.DEEPSLATE_SULFUR_ORE.get());
 
-        tag(BlockTags.NEEDS_IRON_TOOL).add(ModBlocks.SILVER_ORE.get());
+        tag(BlockTags.MINEABLE_WITH_PICKAXE)
+                .add(ModBlocks.SULFUR_ORE.get())
+                .add(ModBlocks.DEEPSLATE_SULFUR_ORE.get());
 
-        tag(BlockTags.MINEABLE_WITH_PICKAXE).add(ModBlocks.SILVER_ORE.get());
+        tag(ModTags.Blocks.ORES_SULFUR)
+                .add(ModBlocks.SULFUR_ORE.get())
+                .add(ModBlocks.DEEPSLATE_SULFUR_ORE.get());
+
+
+
     }
 }

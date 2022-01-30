@@ -9,9 +9,11 @@ import net.minecraft.advancements.critereon.MinMaxBounds;
 import net.minecraft.data.loot.BlockLoot;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.MatchTool;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.stream.Collectors;
@@ -25,10 +27,12 @@ public class ModBlockLootTables extends BlockLoot {
 
     @Override
     protected void addTables() {
-        dropSelf(ModBlocks.SILVER_BLOCK.get());
+        dropSelf(ModBlocks.EXAMPLE_TNT.get());
 
-
-        add(ModBlocks.SILVER_ORE.get(),createOreDrop(ModBlocks.SILVER_ORE.get(), ModBlocks.SILVER_ORE.get().asItem()) );
+        add(ModBlocks.SULFUR_ORE.get(),
+                createOreDrop(ModBlocks.SULFUR_ORE.get(),ModItems.SULFUR_DUST.get()));
+        add(ModBlocks.DEEPSLATE_SULFUR_ORE.get(),
+                createOreDrop(ModBlocks.DEEPSLATE_SULFUR_ORE.get(),ModItems.SULFUR_DUST.get()));
     }
 
 

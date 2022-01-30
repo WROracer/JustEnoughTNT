@@ -11,10 +11,8 @@ import net.minecraft.world.level.block.Block;
 
 public class ModTags {
     public static final class Blocks{
-        public static final Tag.Named<Block> ORES_SILVER = forge("ores/silver");
-        public static final Tag.Named<Block> STORAGE_BLOCKS_SILVER = forge("storage_blocks/silver");
 
-
+        public static final Tag.Named<Block> ORES_SULFUR = forge("ores/sulfur");
 
         private static  Tag.Named<Block> forge(String path){
             return BlockTags.bind(new ResourceLocation("forge",path).toString());
@@ -26,14 +24,7 @@ public class ModTags {
     }
     public static final class Items{
 
-        public static final Tag.Named<Item> ORES_SILVER = forge("ores/silver");
-        public static final Tag.Named<Item> STORAGE_BLOCKS_SILVER = forge("storage_blocks/silver");
-
-        public static final Tag.Named<Item> INGOTS_SILVER = forge("ingots/silver");
-
-        public static final Tag.Named<Item> PRESSING_FORM = mod("pressing/form");
-
-        public static final Tag.Named<Item> MUSIC_DISK = mod("musik/disk");
+        public static final Tag.Named<Item> ORES_SULFUR = forge("ores/sulfur");
 
         private static Tag.Named<Item> forge(String path){
             return ItemTags.bind(new ResourceLocation("forge",path).toString());

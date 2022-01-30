@@ -18,28 +18,6 @@ public class ModItemTagsProvider extends ItemTagsProvider {
 
     @Override
     protected void addTags() {
-        copy(ModTags.Blocks.ORES_SILVER,ModTags.Items.STORAGE_BLOCKS_SILVER);
         copy(Tags.Blocks.ORES,Tags.Items.ORES);
-        copy(ModTags.Blocks.STORAGE_BLOCKS_SILVER,ModTags.Items.STORAGE_BLOCKS_SILVER);
-        copy(Tags.Blocks.STORAGE_BLOCKS,Tags.Items.STORAGE_BLOCKS);
-
-        tag(ModTags.Items.MUSIC_DISK).add(Items.MUSIC_DISC_WARD);
-        tag(ModTags.Items.MUSIC_DISK).add(Items.MUSIC_DISC_MELLOHI);
-        tag(ModTags.Items.MUSIC_DISK).add(Items.MUSIC_DISC_MALL);
-        tag(ModTags.Items.MUSIC_DISK).add(Items.MUSIC_DISC_CHIRP);
-        tag(ModTags.Items.MUSIC_DISK).add(Items.MUSIC_DISC_BLOCKS);
-        tag(ModTags.Items.MUSIC_DISK).add(Items.MUSIC_DISC_CAT);
-        tag(ModTags.Items.MUSIC_DISK).add(Items.MUSIC_DISC_13);
-        tag(ModTags.Items.MUSIC_DISK).add(Items.MUSIC_DISC_FAR);
-        tag(ModTags.Items.MUSIC_DISK).add(Items.MUSIC_DISC_STAL);
-        tag(ModTags.Items.MUSIC_DISK).add(Items.MUSIC_DISC_WAIT);
-        tag(ModTags.Items.MUSIC_DISK).add(Items.MUSIC_DISC_PIGSTEP);
-
-        tag(ModTags.Items.PRESSING_FORM).addTag(ModTags.Items.MUSIC_DISK);
-
-
-
-        tag(ModTags.Items.INGOTS_SILVER).add(ModItems.SILVER_INGOT.get());
-        tag(Tags.Items.INGOTS).addTag(ModTags.Items.INGOTS_SILVER);
     }
 }
