@@ -16,6 +16,7 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         withExistingParent("sulfur_ore",modLoc("block/sulfur_ore"));
         withExistingParent("deepslate_sulfur_ore",modLoc("block/deepslate_sulfur_ore"));
+        withExistingParent("example_tnt",modLoc("block/example_tnt"));
         //withExistingParent("metal_press",modLoc("block/metal_press"));
 
         ModelFile itemGenerated = getExistingFile(mcLoc("item/generated"));

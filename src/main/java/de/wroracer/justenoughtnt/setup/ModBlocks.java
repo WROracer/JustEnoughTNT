@@ -2,6 +2,7 @@ package de.wroracer.justenoughtnt.setup;
 
 
 import de.wroracer.justenoughtnt.block.ExampleTNT;
+import de.wroracer.justenoughtnt.block.FiveTNT;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
