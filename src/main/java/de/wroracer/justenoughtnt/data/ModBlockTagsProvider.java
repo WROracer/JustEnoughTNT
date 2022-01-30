@@ -1,13 +1,11 @@
 package de.wroracer.justenoughtnt.data;
 
-
 import de.wroracer.justenoughtnt.JustEnoughTNT;
 import de.wroracer.justenoughtnt.setup.ModBlocks;
 import de.wroracer.justenoughtnt.setup.ModTags;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 

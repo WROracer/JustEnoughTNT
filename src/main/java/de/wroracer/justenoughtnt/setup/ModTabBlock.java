@@ -12,8 +12,8 @@ public class ModTabBlock extends CreativeModeTab {
 
     public static final ModTabBlock MAIN_TAB = new ModTabBlock(JustEnoughTNT.MOD_ID+".main", ModBlocks.EXAMPLE_TNT);
 
-
     private final RegistryObject<Block> block;
+
     public ModTabBlock(String label, RegistryObject<Block> block) {
         super(label);
         this.block = block;
@@ -24,7 +24,7 @@ public class ModTabBlock extends CreativeModeTab {
         return new ItemStack(block.get().asItem());
     }
 
-    public static void register(){
+    public static void register() {
 
     }
 }

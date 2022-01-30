@@ -18,8 +18,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         simpleBlock(ModBlocks.SULFUR_ORE.get());
-
         simpleBlock(ModBlocks.DEEPSLATE_SULFUR_ORE.get());
+        simpleBlock(ModBlocks.EXAMPLE_TNT.get());
 
         //simpleBlock(ModBlocks.METAL_PRESS.get(),models().cube("metal_press",modId("block/metal_press_bottom"),modId("block/metal_press_top"),modId("block/metal_press_side"),modId("block/metal_press_side"),modId("block/metal_press_side"),modId("block/metal_press_side")));
 
