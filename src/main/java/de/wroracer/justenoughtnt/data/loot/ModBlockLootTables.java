@@ -26,7 +26,7 @@ public class ModBlockLootTables extends BlockLoot {
     @Override
     protected void addTables() {
         dropSelf(ModBlocks.SILVER_BLOCK.get());
-
+        dropSelf(ModBlocks.EXAMPLE_TNT.get());
 
         add(ModBlocks.SILVER_ORE.get(),createOreDrop(ModBlocks.SILVER_ORE.get(), ModBlocks.SILVER_ORE.get().asItem()) );
     }

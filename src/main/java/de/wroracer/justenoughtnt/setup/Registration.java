@@ -1,18 +1,12 @@
 package de.wroracer.justenoughtnt.setup;
 
-
 import de.wroracer.justenoughtnt.JustEnoughTNT;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -24,16 +18,13 @@ public class Registration {
     public static final DeferredRegister<Item> ITEMS = create(ForgeRegistries.ITEMS);
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = create(ForgeRegistries.BLOCK_ENTITIES);
 
-
-    public static void register(){
+    public static void register() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         BLOCKS.register(modEventBus);
         ITEMS.register(modEventBus);
         //CONTAINERS.register(modEventBus);
         //RECIPE_SERIALIZERS.register(modEventBus);
         //TILE_ENTITYS.register(modEventBus);
-
-
 
         ModTabBlock.register();
         ModBlocks.register();
@@ -45,7 +36,7 @@ public class Registration {
         MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, ModOres::addOres);
     }
 
-    private static <T extends IForgeRegistryEntry<T>> DeferredRegister<T> create(IForgeRegistry<T> registry){
+    private static <T extends IForgeRegistryEntry<T>> DeferredRegister<T> create(IForgeRegistry<T> registry) {
         return DeferredRegister.create(registry, JustEnoughTNT.MOD_ID);
     }
 
