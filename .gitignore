@@ -119,4 +119,4 @@ run/
 
 bin
 .vscode
-src\generated
+src/generated/

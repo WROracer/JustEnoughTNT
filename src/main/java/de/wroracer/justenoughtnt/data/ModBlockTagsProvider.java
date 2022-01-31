@@ -6,7 +6,6 @@ import de.wroracer.justenoughtnt.setup.ModTags;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.tags.BlockTags;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class ModBlockTagsProvider extends BlockTagsProvider {
@@ -28,8 +27,6 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         tag(ModTags.Blocks.ORES_SULFUR)
                 .add(ModBlocks.SULFUR_ORE.get())
                 .add(ModBlocks.DEEPSLATE_SULFUR_ORE.get());
-
-
 
     }
 }
