@@ -2,6 +2,8 @@ package de.wroracer.justenoughtnt.block;
 
 import de.wroracer.justenoughtnt.entity.BaseTNT;
 import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.item.PrimedTnt;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
@@ -14,6 +16,8 @@ public class ExampleTNT extends BaseTNTBlock {
     @Override
     public void onExplode(BaseTNT tnt) {
         Level world = tnt.getLevel();
+
+        world.playSound(null, tnt.getPos(), SoundEvents.GENERIC_EXPLODE, SoundSource.BLOCKS, 1f, 1f);
         BlockPos pos = tnt.getPos();
 
         for (int i = 0; i < 10; i++) {

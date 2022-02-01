@@ -14,17 +14,23 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        withExistingParent("sulfur_ore",modLoc("block/sulfur_ore"));
-        withExistingParent("deepslate_sulfur_ore",modLoc("block/deepslate_sulfur_ore"));
-        withExistingParent("example_tnt",modLoc("block/example_tnt"));
+        withExistingParent("sulfur_ore", modLoc("block/sulfur_ore"));
+        withExistingParent("deepslate_sulfur_ore", modLoc("block/deepslate_sulfur_ore"));
+        withExistingParent("example_tnt", modLoc("block/example_tnt"));
+        withExistingParent("tnt_x5", modLoc("block/tnt_x5"));
+        withExistingParent("tnt_x10", modLoc("block/tnt_x10"));
+        withExistingParent("tnt_x20", modLoc("block/tnt_x20"));
+        withExistingParent("tnt_x50", modLoc("block/tnt_x50"));
+        withExistingParent("tnt_x100", modLoc("block/tnt_x100"));
+
         //withExistingParent("metal_press",modLoc("block/metal_press"));
 
         ModelFile itemGenerated = getExistingFile(mcLoc("item/generated"));
 
-        builder(itemGenerated,"sulfur_dust");
+        builder(itemGenerated, "sulfur_dust");
     }
 
     private ItemModelBuilder builder(ModelFile itemGenerated, String name) {
-        return getBuilder(name).parent(itemGenerated).texture("layer0","item/"+name);
+        return getBuilder(name).parent(itemGenerated).texture("layer0", "item/" + name);
     }
 }
