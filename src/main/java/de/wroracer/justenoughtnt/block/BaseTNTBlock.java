@@ -123,6 +123,7 @@ public class BaseTNTBlock extends TntBlock {
             tnt.setFuse((short) fuse);
         }
         world.addFreshEntity(tnt);
+        onFuse(tnt);
     }
 
     public void onExplode(BaseTNT tnt) {
@@ -134,6 +135,10 @@ public class BaseTNTBlock extends TntBlock {
         tnt.getLevel().explode(tnt, (double) posX, (double) posY, (double) posZ, 4.0F,
                 Explosion.BlockInteraction.BREAK);
         tnt.discard();
+
+    }
+
+    public void onFuse(BaseTNT tnt) {
 
     }
 

@@ -4,5 +4,16 @@
   "block.justenoughtnt.tnt_x10": "TNT x10",
   "block.justenoughtnt.tnt_x20": "TNT x20",
   "block.justenoughtnt.tnt_x50": "TNT x50",
-  "block.justenoughtnt.tnt_x100": "TNT x100"
+  "block.justenoughtnt.tnt_x100": "TNT x100",
+  "block.justenoughtnt.tnt_x500": "TNT x500",
+  "block.justenoughtnt.tnt_x1k": "TNT x1000",
+  "block.justenoughtnt.drain_tnt": "Drain TNT",
+  "block.justenoughtnt.drain_tnt_x5": "Drain TNT x5",
+
+  "block.justenoughtnt.jumping_tnt": "Jumping TNT",
+
+  "block.justenoughtnt.sulfur_ore": "Sulfur Ore",
+  "block.justenoughtnt.deepslate_sulfur_ore": "Deepslate Sulfur Ore",
+
+  "item.justenoughtnt.sulfur_dust": "Sulfur Dust"
 }

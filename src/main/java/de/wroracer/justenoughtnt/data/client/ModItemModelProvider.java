@@ -22,6 +22,14 @@ public class ModItemModelProvider extends ItemModelProvider {
         withExistingParent("tnt_x20", modLoc("block/tnt_x20"));
         withExistingParent("tnt_x50", modLoc("block/tnt_x50"));
         withExistingParent("tnt_x100", modLoc("block/tnt_x100"));
+        withExistingParent("tnt_x500", modLoc("block/tnt_x500"));
+
+        withExistingParent("tnt_x1k", modLoc("block/tnt_x1k"));
+
+        withExistingParent("drain_tnt", modLoc("block/drain_tnt"));
+        withExistingParent("drain_tnt_x5", modLoc("block/drain_tnt_x5"));
+
+        withExistingParent("jumping_tnt", modLoc("block/jumping_tnt"));
 
         //withExistingParent("metal_press",modLoc("block/metal_press"));
 

@@ -1,32 +1,33 @@
 package de.wroracer.justenoughtnt.block;
 
+import java.util.HashMap;
+
 import de.wroracer.justenoughtnt.entity.BaseTNT;
 import de.wroracer.justenoughtnt.util.Explosion;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.level.Level;
+import net.minecraft.core.BlockPos;
 
 public class TNTX50 extends BaseTNTBlock {
-    private Explosion explosion;
+    private HashMap<BlockPos, Explosion> explosions;
 
     public TNTX50(Properties properties) {
-        super(properties, 13 * 20); // 13 sec
-        explosion = null;
+        super(properties, 13 * 20); // 13 seconds
+        explosions = new HashMap<BlockPos, Explosion>();
     }
 
     @Override
     public void onExplode(BaseTNT tnt) {
-        // play explosion sound
-        Level world = tnt.getLevel();
+        BlockPos pos = tnt.getPos();
 
-        if (explosion == null) {
-            world.playSound(null, tnt.getPos(), SoundEvents.GENERIC_EXPLODE, SoundSource.BLOCKS, 1f, 0.8f);
-            explosion = new Explosion(tnt.getLevel(), tnt.getPos(), tnt.getOwner(), 30f, 0.03D, 2D, 100); /// 1 tnt ~ 4 2 tnt ~ 6
+        if (!explosions.containsKey(pos)) {
+            explosions.put(pos, new Explosion(tnt.getLevel(), pos, tnt.getOwner(), 30, 0.01D, 2D, 500)); //max 500 blocks per tick
         }
+
+        Explosion explosion = this.explosions.get(pos);
+
         explosion.explode();
         if (explosion.tick()) {
+            explosions.remove(pos);
             tnt.discard();
-            explosion = null;
         }
     }
 

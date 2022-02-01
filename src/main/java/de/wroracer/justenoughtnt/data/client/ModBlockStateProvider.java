@@ -26,6 +26,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlock(ModBlocks.TNT_X20.get());
         simpleBlock(ModBlocks.TNT_X50.get());
         simpleBlock(ModBlocks.TNT_X100.get());
+        simpleBlock(ModBlocks.TNT_X500.get());
+
+        simpleBlock(ModBlocks.TNT_X1K.get());
+        simpleBlock(ModBlocks.DRAIN_TNT.get());
+        simpleBlock(ModBlocks.DRAIN_TNT_X5.get());
+
+        simpleBlock(ModBlocks.JUMPING_TNT.get());
 
         //simpleBlock(ModBlocks.METAL_PRESS.get(),models().cube("metal_press",modId("block/metal_press_bottom"),modId("block/metal_press_top"),modId("block/metal_press_side"),modId("block/metal_press_side"),modId("block/metal_press_side"),modId("block/metal_press_side")));
 

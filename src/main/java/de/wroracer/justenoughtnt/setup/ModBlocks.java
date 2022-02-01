@@ -2,12 +2,16 @@ package de.wroracer.justenoughtnt.setup;
 
 import java.util.function.Supplier;
 
+import de.wroracer.justenoughtnt.block.DrainTNT;
+import de.wroracer.justenoughtnt.block.DrainTNTX5;
 import de.wroracer.justenoughtnt.block.ExampleTNT;
+import de.wroracer.justenoughtnt.block.JumpingTNT;
 import de.wroracer.justenoughtnt.block.TNTX10;
 import de.wroracer.justenoughtnt.block.TNTX100;
 import de.wroracer.justenoughtnt.block.TNTX20;
 import de.wroracer.justenoughtnt.block.TNTX5;
 import de.wroracer.justenoughtnt.block.TNTX50;
+import de.wroracer.justenoughtnt.block.TNTX1K;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -66,6 +70,38 @@ public class ModBlocks {
         // TNTX100 (100 times stronger than normal TNT)
         public static final RegistryObject<Block> TNT_X100 = register("tnt_x100",
                         () -> new TNTX100(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
+                                        .strength(1.0f, 1.0f)
+                                        .sound(SoundType.GRASS)));
+
+        // tntX500 (500 times stronger than normal TNT)
+        public static final RegistryObject<Block> TNT_X500 = register("tnt_x500",
+                        () -> new TNTX100(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
+                                        .strength(1.0f, 1.0f)
+                                        .sound(SoundType.GRASS)));
+
+        // TNTX1K (1000 times stronger than normal TNT)
+        public static final RegistryObject<Block> TNT_X1K = register("tnt_x1k",
+                        () -> new TNTX1K(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
+                                        .strength(1.0f, 1.0f)
+                                        .sound(SoundType.GRASS)));
+
+        // drain tnt. it drains fluids
+        // /*
+        public static final RegistryObject<Block> DRAIN_TNT = register("drain_tnt",
+                        () -> new DrainTNT(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
+                                        .strength(1.0f, 1.0f)
+                                        .sound(SoundType.GRASS)));
+
+        //*/
+        // drain tnt x5 (5 times stronger than normal drain tnt)
+        public static final RegistryObject<Block> DRAIN_TNT_X5 = register("drain_tnt_x5",
+                        () -> new DrainTNTX5(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
+                                        .strength(1.0f, 1.0f)
+                                        .sound(SoundType.GRASS)));
+
+        // jumping tnt. it jumps
+        public static final RegistryObject<Block> JUMPING_TNT = register("jumping_tnt",
+                        () -> new JumpingTNT(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
                                         .strength(1.0f, 1.0f)
                                         .sound(SoundType.GRASS)));
 

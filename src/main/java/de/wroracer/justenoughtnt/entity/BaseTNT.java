@@ -19,15 +19,6 @@ public class BaseTNT extends PrimedTnt {
 
     @Override
     public void tick() {
-        if (!this.isNoGravity()) {
-            this.setDeltaMovement(this.getDeltaMovement().add(0.0D, -0.04D, 0.0D));
-        }
-
-        this.move(MoverType.SELF, this.getDeltaMovement());
-        this.setDeltaMovement(this.getDeltaMovement().scale(0.98D));
-        if (this.onGround) {
-            this.setDeltaMovement(this.getDeltaMovement().multiply(0.7D, -0.5D, 0.7D));
-        }
 
         int i = this.getFuse() - 1;
         this.setFuse(i);
@@ -37,6 +28,15 @@ public class BaseTNT extends PrimedTnt {
                 this.explode_();
             }
         } else {
+            if (!this.isNoGravity()) {
+                this.setDeltaMovement(this.getDeltaMovement().add(0.0D, -0.04D, 0.0D));
+            }
+
+            this.move(MoverType.SELF, this.getDeltaMovement());
+            this.setDeltaMovement(this.getDeltaMovement().scale(0.98D));
+            if (this.onGround) {
+                this.setDeltaMovement(this.getDeltaMovement().multiply(0.7D, -0.5D, 0.7D));
+            }
             this.updateInWaterStateAndDoFluidPushing();
             if (this.level.isClientSide) {
                 this.level.addParticle(ParticleTypes.SMOKE, this.getX(), this.getY() + 0.5D, this.getZ(), 0.0D, 0.0D,
