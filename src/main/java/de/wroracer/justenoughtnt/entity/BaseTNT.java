@@ -28,19 +28,22 @@ public class BaseTNT extends PrimedTnt {
                 this.explode_();
             }
         } else {
-            if (!this.isNoGravity()) {
-                this.setDeltaMovement(this.getDeltaMovement().add(0.0D, -0.04D, 0.0D));
-            }
+            if (fuseTick(this)) {
 
-            this.move(MoverType.SELF, this.getDeltaMovement());
-            this.setDeltaMovement(this.getDeltaMovement().scale(0.98D));
-            if (this.onGround) {
-                this.setDeltaMovement(this.getDeltaMovement().multiply(0.7D, -0.5D, 0.7D));
-            }
-            this.updateInWaterStateAndDoFluidPushing();
-            if (this.level.isClientSide) {
-                this.level.addParticle(ParticleTypes.SMOKE, this.getX(), this.getY() + 0.5D, this.getZ(), 0.0D, 0.0D,
-                        0.0D);
+                if (!this.isNoGravity()) {
+                    this.setDeltaMovement(this.getDeltaMovement().add(0.0D, -0.04D, 0.0D));
+                }
+
+                this.move(MoverType.SELF, this.getDeltaMovement());
+                this.setDeltaMovement(this.getDeltaMovement().scale(0.98D));
+                if (this.onGround) {
+                    this.setDeltaMovement(this.getDeltaMovement().multiply(0.7D, -0.5D, 0.7D));
+                }
+                this.updateInWaterStateAndDoFluidPushing();
+                if (this.level.isClientSide) {
+                    this.level.addParticle(ParticleTypes.SMOKE, this.getX(), this.getY() + 0.5D, this.getZ(), 0.0D,
+                            0.0D, 0.0D);
+                }
             }
         }
 
@@ -50,7 +53,11 @@ public class BaseTNT extends PrimedTnt {
         tntBlock.onExplode(this);
     }
 
+    public boolean fuseTick(BaseTNT tnt) {
+        return tntBlock.fuseTick(tnt);
+    }
+
     public BlockPos getPos() {
-        return new BlockPos(this.getBlockX(), this.getBlockY(), this.getBlockZ());
+        return new BlockPos(this.getX(), this.getY(), this.getZ());
     }
 }

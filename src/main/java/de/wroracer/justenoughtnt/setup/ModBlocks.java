@@ -4,14 +4,18 @@ import java.util.function.Supplier;
 
 import de.wroracer.justenoughtnt.block.DrainTNT;
 import de.wroracer.justenoughtnt.block.DrainTNTX5;
+import de.wroracer.justenoughtnt.block.DupstepTNT;
 import de.wroracer.justenoughtnt.block.ExampleTNT;
 import de.wroracer.justenoughtnt.block.JumpingTNT;
+import de.wroracer.justenoughtnt.block.OneJumpTNT;
+import de.wroracer.justenoughtnt.block.RainTNT;
+import de.wroracer.justenoughtnt.block.RussianRouletteTNT;
 import de.wroracer.justenoughtnt.block.TNTX10;
 import de.wroracer.justenoughtnt.block.TNTX100;
+import de.wroracer.justenoughtnt.block.TNTX1K;
 import de.wroracer.justenoughtnt.block.TNTX20;
 import de.wroracer.justenoughtnt.block.TNTX5;
 import de.wroracer.justenoughtnt.block.TNTX50;
-import de.wroracer.justenoughtnt.block.TNTX1K;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -102,6 +106,29 @@ public class ModBlocks {
         // jumping tnt. it jumps
         public static final RegistryObject<Block> JUMPING_TNT = register("jumping_tnt",
                         () -> new JumpingTNT(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
+                                        .strength(1.0f, 1.0f)
+                                        .sound(SoundType.GRASS)));
+
+        // One jump tnt
+        public static final RegistryObject<Block> ONE_JUMP_TNT = register("one_jump_tnt",
+                        () -> new OneJumpTNT(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
+                                        .strength(1.0f, 1.0f)
+                                        .sound(SoundType.GRASS)));
+
+        // russian roulette tnt
+        public static final RegistryObject<Block> RUSSIAN_ROULETTE_TNT = register("russian_roulette_tnt",
+                        () -> new RussianRouletteTNT(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
+                                        .strength(1.0f, 1.0f)
+                                        .sound(SoundType.GRASS)));
+
+        // dupstep tnt
+        public static final RegistryObject<Block> DUPSTEP_TNT = register("dupstep_tnt",
+                        () -> new DupstepTNT(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
+                                        .strength(1.0f, 1.0f)
+                                        .sound(SoundType.GRASS)));
+        // rain tnt
+        public static final RegistryObject<Block> RAIN_TNT = register("rain_tnt",
+                        () -> new RainTNT(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
                                         .strength(1.0f, 1.0f)
                                         .sound(SoundType.GRASS)));
 

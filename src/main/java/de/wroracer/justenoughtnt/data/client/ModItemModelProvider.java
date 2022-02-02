@@ -31,6 +31,13 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         withExistingParent("jumping_tnt", modLoc("block/jumping_tnt"));
 
+        withExistingParent("one_jump_tnt", modLoc("block/one_jump_tnt"));
+
+        withExistingParent("russian_roulette_tnt", modLoc("block/russian_roulette_tnt"));
+        withExistingParent("dupstep_tnt", modLoc("block/dupstep_tnt"));
+
+        withExistingParent("rain_tnt", modLoc("block/rain_tnt"));
+
         //withExistingParent("metal_press",modLoc("block/metal_press"));
 
         ModelFile itemGenerated = getExistingFile(mcLoc("item/generated"));

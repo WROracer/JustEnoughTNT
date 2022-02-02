@@ -7,12 +7,12 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.item.PrimedTnt;
 import net.minecraft.world.phys.Vec3;
 
-public class JumpingTNT extends BaseTNTBlock {
+public class OneJumpTNT extends BaseTNTBlock {
 
     private HashMap<BaseTNT, Integer> cycles;
 
-    public JumpingTNT(Properties properties) {
-        super(properties, 3 * 20); // 13 seconds
+    public OneJumpTNT(Properties properties) {
+        super(properties);
         cycles = new HashMap<BaseTNT, Integer>();
     }
 
@@ -33,15 +33,16 @@ public class JumpingTNT extends BaseTNTBlock {
             tnt.discard();
 
         } else {
-            for (int i = 0; i < 2; i++) {
-                double x = pos.getX();
-                double y = pos.getY();
-                double z = pos.getZ();
-                BaseTNT newTNT = new BaseTNT(tnt.getLevel(), x, y, z, this, tnt.getOwner());
-                newTNT.setDeltaMovement(newTNT.getDeltaMovement().multiply(new Vec3(5, 5, 5)));
-                newTNT.getLevel().addFreshEntity(newTNT);
-                cycles.put(newTNT, cycle - 1);
-            }
+
+            double x = pos.getX() + 0.5;
+            double y = pos.getY();
+            double z = pos.getZ() + 0.5;
+            BaseTNT newTNT = new BaseTNT(tnt.getLevel(), x, y, z, this, tnt.getOwner());
+            newTNT.setDeltaMovement(newTNT.getDeltaMovement().multiply(new Vec3(3, 3, 3)));
+            newTNT.setFuse(newTNT.getFuse() / 2);
+            newTNT.getLevel().addFreshEntity(newTNT);
+            cycles.put(newTNT, cycle - 1);
+
             tnt.discard();
 
         }
