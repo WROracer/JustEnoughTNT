@@ -21,6 +21,7 @@ import de.wroracer.justenoughtnt.block.TNTX1K;
 import de.wroracer.justenoughtnt.block.TNTX20;
 import de.wroracer.justenoughtnt.block.TNTX5;
 import de.wroracer.justenoughtnt.block.TNTX50;
+import de.wroracer.justenoughtnt.block.TNTX500;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -83,7 +84,7 @@ public class ModBlocks {
 
         // tntX500 (500 times stronger than normal TNT)
         public static final RegistryObject<Block> TNT_X500 = register("tnt_x500",
-                        () -> new TNTX100(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
+                        () -> new TNTX500(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
                                         // .strength(1.0f, 1.0f)
                                         .sound(SoundType.GRASS)));
 
