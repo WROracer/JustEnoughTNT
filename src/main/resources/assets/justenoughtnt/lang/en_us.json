@@ -15,6 +15,11 @@
   "block.justenoughtnt.russian_roulette_tnt": "Russian Roulette TNT",
   "block.justenoughtnt.dupstep_tnt": "Dupstep TNT",
   "block.justenoughtnt.rain_tnt": "Rain TNT",
+  "block.justenoughtnt.ore_miner_tnt": "Ore Miner TNT",
+  "block.justenoughtnt.flat_tnt": "Flat TNT",
+  "block.justenoughtnt.circle_tnt": "Circle TNT",
+  "block.justenoughtnt.cube_tnt": "Cube TNT",
+  "block.justenoughtnt.fuse_tnt": "Fuse TNT",
 
   "block.justenoughtnt.sulfur_ore": "Sulfur Ore",
   "block.justenoughtnt.deepslate_sulfur_ore": "Deepslate Sulfur Ore",

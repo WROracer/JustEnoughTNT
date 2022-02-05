@@ -6,11 +6,11 @@ import de.wroracer.justenoughtnt.entity.BaseTNT;
 import de.wroracer.justenoughtnt.util.Explosion;
 import net.minecraft.core.BlockPos;
 
-public class TNTX20 extends BaseTNTBlock {
+public class CircleTNT extends BaseTNTBlock {
 
     private HashMap<BlockPos, Explosion> explosions;
 
-    public TNTX20(Properties properties) {
+    public CircleTNT(Properties properties) {
         super(properties);
         explosions = new HashMap<BlockPos, Explosion>();
     }
@@ -20,7 +20,7 @@ public class TNTX20 extends BaseTNTBlock {
         BlockPos pos = tnt.getPos();
 
         if (!explosions.containsKey(pos)) {
-            explosions.put(pos, new Explosion(tnt.getLevel(), pos, tnt.getOwner(), 19, 0.05D, 20, 1000)); //max 1000 blocks per tick
+            explosions.put(pos, new Explosion(tnt.getLevel(), pos, tnt.getOwner(), 10, 0D, 0, 1000)); //max 1000 blocks per tick
         }
 
         Explosion explosion = this.explosions.get(pos);

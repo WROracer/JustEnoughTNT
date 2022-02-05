@@ -3,16 +3,16 @@ package de.wroracer.justenoughtnt.block;
 import java.util.HashMap;
 
 import de.wroracer.justenoughtnt.entity.BaseTNT;
-import de.wroracer.justenoughtnt.util.Explosion;
+import de.wroracer.justenoughtnt.util.FuseExplosion;
 import net.minecraft.core.BlockPos;
 
-public class TNTX20 extends BaseTNTBlock {
+public class FuseTNT extends BaseTNTBlock {
 
-    private HashMap<BlockPos, Explosion> explosions;
+    private HashMap<BlockPos, FuseExplosion> explosions;
 
-    public TNTX20(Properties properties) {
+    public FuseTNT(Properties properties) {
         super(properties);
-        explosions = new HashMap<BlockPos, Explosion>();
+        explosions = new HashMap<BlockPos, FuseExplosion>();
     }
 
     @Override
@@ -20,10 +20,10 @@ public class TNTX20 extends BaseTNTBlock {
         BlockPos pos = tnt.getPos();
 
         if (!explosions.containsKey(pos)) {
-            explosions.put(pos, new Explosion(tnt.getLevel(), pos, tnt.getOwner(), 19, 0.05D, 20, 1000)); //max 1000 blocks per tick
+            explosions.put(pos, new FuseExplosion(tnt.getLevel(), pos, tnt.getOwner(), 45, 0.05D, 20, 1000)); //max 1000 blocks per tick
         }
 
-        Explosion explosion = this.explosions.get(pos);
+        FuseExplosion explosion = this.explosions.get(pos);
 
         explosion.explode();
         if (explosion.tick()) {

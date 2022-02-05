@@ -146,6 +146,15 @@ public class ModRecipeProvider extends RecipeProvider {
                                 .pattern("v v")
                                 .pattern(" t ")
                                 .pattern("v v")
+
+                                .save(consumer);
+                ShapedRecipeBuilder.shaped(ModBlocks.ORE_MINER_TNT.get(), 1)
+                                .unlockedBy("has_item", has(ModBlocks.TNT_X20.get()))
+                                .define('p', Items.DIAMOND_PICKAXE)
+                                .define('t', ModBlocks.TNT_X20.get())
+                                .pattern("ppp")
+                                .pattern("ptp")
+                                .pattern("ppp")
                                 .save(consumer);
 
                 //*/
