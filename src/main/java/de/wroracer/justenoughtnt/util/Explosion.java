@@ -83,7 +83,7 @@ public class Explosion {
         }
     }
 
-    private ArrayList<BlockPos> getBlocks() {
+    public ArrayList<BlockPos> getBlocks() {
         JustEnoughTNT.LOGGER.info("Getting blocks in radius: " + radius);
 
         ArrayList<BlockPos> blocks = new ArrayList<BlockPos>();
@@ -121,7 +121,7 @@ public class Explosion {
         return currentTick >= chunkBlocks.size();
     }
 
-    private void modifyEntities() {
+    public void modifyEntities() {
         ArrayList<Entity> entities = damageEntities();
         for (Entity entity : entities) {
             Vec3 newVelocity = getEntityVelocity(entity);
@@ -253,4 +253,13 @@ public class Explosion {
     public void setDropChance(double dropChance) {
         this.dropChance = dropChance;
     }
+
+    public double getRandomness() {
+        return randomness;
+    }
+
+    public void setRandomness(double randomness) {
+        this.randomness = randomness;
+    }
+
 }

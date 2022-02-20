@@ -39,6 +39,15 @@ public class ModBlockLootTables extends BlockLoot {
                 dropSelf(ModBlocks.DRAIN_TNT.get());
                 dropSelf(ModBlocks.DRAIN_TNT_X5.get());
                 dropSelf(ModBlocks.JUMPING_TNT.get());
+                dropSelf(ModBlocks.ONE_JUMP_TNT.get());
+                dropSelf(ModBlocks.RUSSIAN_ROULETTE_TNT.get());
+                dropSelf(ModBlocks.DUPSTEP_TNT.get());
+                dropSelf(ModBlocks.RAIN_TNT.get());
+                dropSelf(ModBlocks.ORE_MINER_TNT.get());
+                dropSelf(ModBlocks.FLAT_TNT.get());
+                dropSelf(ModBlocks.CIRCLE_TNT.get());
+                dropSelf(ModBlocks.CUBE_TNT.get());
+                dropSelf(ModBlocks.FUSE_TNT.get());
 
                 add(ModBlocks.SULFUR_ORE.get(),
                                 createOreDrop(ModBlocks.SULFUR_ORE.get(), ModItems.SULFUR_DUST.get()));

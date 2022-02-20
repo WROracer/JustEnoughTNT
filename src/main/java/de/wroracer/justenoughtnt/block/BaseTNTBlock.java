@@ -121,7 +121,10 @@ public class BaseTNTBlock<T extends BaseTNT> extends TntBlock {
 
     public void handleExploded(Level world, BlockPos pos, LivingEntity cause, int defaultFuse) {
         int fuse = defaultFuse == -1 ? 80 : defaultFuse;
-        ignite(world, pos, (Player) cause, world.random.nextInt(fuse / 4) + fuse / 8);
+
+        if (fuse != 0)
+            fuse = world.random.nextInt(fuse / 4) + fuse / 8;
+        ignite(world, pos, (Player) cause, fuse);
     }
 
     public void ignite(Level world, BlockPos pos, Player igniter, int fuse) {
@@ -144,6 +147,12 @@ public class BaseTNTBlock<T extends BaseTNT> extends TntBlock {
     public void onFuse(BaseTNT tnt) {
 
     }
+
+    public boolean fuseTick(BaseTNT tnt) {
+        return true;
+
+    }
+
     // getter and setter
     public int getFuse() {
         return fuse;

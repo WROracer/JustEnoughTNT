@@ -48,7 +48,7 @@ public class DrainExplosion extends Explosion {
     }
 
     @Override
-    public double getEntityDamage(double distance) {
-        return 0D;
+    public void modifyEntities() {
+        // do nothing
     }
 }
