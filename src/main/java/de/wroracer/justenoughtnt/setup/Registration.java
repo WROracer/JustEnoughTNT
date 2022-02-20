@@ -1,6 +1,7 @@
 package de.wroracer.justenoughtnt.setup;
 
 import de.wroracer.justenoughtnt.JustEnoughTNT;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -17,9 +18,11 @@ public class Registration {
     public static final DeferredRegister<Block> BLOCKS = create(ForgeRegistries.BLOCKS);
     public static final DeferredRegister<Item> ITEMS = create(ForgeRegistries.ITEMS);
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = create(ForgeRegistries.BLOCK_ENTITIES);
+    public static final DeferredRegister<EntityType<?>> ENTITIES = create(ForgeRegistries.ENTITIES);
 
     public static void register() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        ENTITIES.register(modEventBus);
         BLOCKS.register(modEventBus);
         ITEMS.register(modEventBus);
         //CONTAINERS.register(modEventBus);
@@ -27,6 +30,7 @@ public class Registration {
         //TILE_ENTITYS.register(modEventBus);
 
         ModTabBlock.register();
+        ModEntities.register();
         ModBlocks.register();
         ModItems.register();
         //ModRecepies.register();

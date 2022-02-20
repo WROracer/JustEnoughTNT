@@ -1,5 +1,6 @@
 package de.wroracer.justenoughtnt.util;
 
+import de.wroracer.justenoughtnt.JustEnoughTNT;
 import de.wroracer.justenoughtnt.block.BaseTNTBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
@@ -25,6 +26,8 @@ public class DrainExplosion extends Explosion {
         Material material = this.getLevel().getBlockState(pos).getMaterial();
         boolean isDrainable = material.isLiquid() || material == Material.WATER_PLANT
                 || material == Material.REPLACEABLE_WATER_PLANT; // set to true if block is a liquid
+
+        JustEnoughTNT.LOGGER.debug("this.getLevel().getFluidState(pos) = " + this.getLevel().getFluidState(pos));
 
         return (!isDestructable && isDrainable) || block instanceof BaseTNTBlock;
     }

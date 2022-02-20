@@ -8,7 +8,9 @@ import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
@@ -18,19 +20,27 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.TntBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraftforge.registries.RegistryObject;
 
-public class BaseTNTBlock extends TntBlock {
+import java.util.function.Supplier;
+
+public class BaseTNTBlock<T extends BaseTNT> extends TntBlock {
 
     private int fuse = -1;
 
-    public BaseTNTBlock(Properties properties, int fuse) {
+    private RegistryObject<EntityType<T>> entityType;
+
+    public BaseTNTBlock(Properties properties, int fuse, RegistryObject<EntityType<T>> entityType) {
         super(properties);
         this.fuse = fuse;
+        this.entityType = entityType;
     }
 
-    public BaseTNTBlock(Properties properties) {
+    public BaseTNTBlock(Properties properties,RegistryObject<EntityType<T>> entityType) {
         super(properties);
+        this.entityType = entityType;
     }
 
     @Override
@@ -71,7 +81,7 @@ public class BaseTNTBlock extends TntBlock {
         }
     }
 
-    @Override
+    /*@Override
     public void wasExploded(Level world, BlockPos pos, Explosion explosion) {
         if (!world.isClientSide) {
             LivingEntity cause = null;
@@ -80,7 +90,7 @@ public class BaseTNTBlock extends TntBlock {
             }
             handleExploded(world, pos, cause, 80);
         }
-    }
+    }*/
 
     @Override
     public void neighborChanged(BlockState state, Level world, BlockPos pos, Block block,
@@ -118,30 +128,22 @@ public class BaseTNTBlock extends TntBlock {
         // System.out.println("ignite block asdasd");
         world.playSound(null, pos, SoundEvents.TNT_PRIMED, SoundSource.BLOCKS, 1.0F, 1.0F);
         world.removeBlock(pos, false);
-        BaseTNT tnt = new BaseTNT(world, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, this, igniter);
+
+        T tnt = entityType.get().create(world);
+
+        tnt.setPos(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D);
+        tnt.setOwner(igniter);
         if (fuse != -1) {
             tnt.setFuse((short) fuse);
         }
         world.addFreshEntity(tnt);
+        world.gameEvent(igniter, GameEvent.PRIME_FUSE, pos);
         onFuse(tnt);
-    }
-
-    public void onExplode(BaseTNT tnt) {
-        // System.out.println("Exploded");
-        int posX = tnt.getBlockX();
-        int posY = tnt.getBlockY();
-        int posZ = tnt.getBlockZ();
-
-        tnt.getLevel().explode(tnt, (double) posX, (double) posY, (double) posZ, 4.0F,
-                Explosion.BlockInteraction.BREAK);
-        tnt.discard();
-
     }
 
     public void onFuse(BaseTNT tnt) {
 
     }
-
     // getter and setter
     public int getFuse() {
         return fuse;

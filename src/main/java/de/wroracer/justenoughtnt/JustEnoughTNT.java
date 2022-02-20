@@ -1,5 +1,6 @@
 package de.wroracer.justenoughtnt;
 
+import de.wroracer.justenoughtnt.util.ModResourceLocation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,5 +20,12 @@ public class JustEnoughTNT {
         Registration.register();
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
+    }
+
+    public static ModResourceLocation getId(String path) {
+        if (path.contains(":")) {
+            throw new IllegalArgumentException("path contains namespace");
+        }
+        return new ModResourceLocation(path);
     }
 }

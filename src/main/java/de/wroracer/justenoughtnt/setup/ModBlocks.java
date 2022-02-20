@@ -2,16 +2,8 @@ package de.wroracer.justenoughtnt.setup;
 
 import java.util.function.Supplier;
 
-import de.wroracer.justenoughtnt.block.DrainTNT;
-import de.wroracer.justenoughtnt.block.DrainTNTX5;
-import de.wroracer.justenoughtnt.block.ExampleTNT;
-import de.wroracer.justenoughtnt.block.JumpingTNT;
-import de.wroracer.justenoughtnt.block.TNTX10;
-import de.wroracer.justenoughtnt.block.TNTX100;
-import de.wroracer.justenoughtnt.block.TNTX20;
-import de.wroracer.justenoughtnt.block.TNTX5;
-import de.wroracer.justenoughtnt.block.TNTX50;
-import de.wroracer.justenoughtnt.block.TNTX1K;
+import de.wroracer.justenoughtnt.block.*;
+import de.wroracer.justenoughtnt.entity.TNTX1KEntity;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -38,72 +30,71 @@ public class ModBlocks {
 
         //example TNT
         public static final RegistryObject<Block> EXAMPLE_TNT = register("example_tnt",
-                        () -> new ExampleTNT(
+                        () -> new BaseTNTBlock<>(
                                         BlockBehaviour.Properties.of(Material.EXPLOSIVE)
                                                         .sound(SoundType.GRASS)
-                                                        .strength(1.0f, 1.0f)));
+                                                .strength(1.0f, 1.0f),ModEntities.EXAMPLE_TNT));
 
         //TNTX5 (5 times stronger than normal TNT)
         public static final RegistryObject<Block> TNT_X5 = register("tnt_x5",
-                        () -> new TNTX5(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
+                        () -> new BaseTNTBlock<>(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
                                         .strength(1.0f, 1.0f)
-                                        .sound(SoundType.GRASS)));
+                                        .sound(SoundType.GRASS),80*2,ModEntities.TNT_X5));
 
         //TNTX10 (10 times stronger than normal TNT)
         public static final RegistryObject<Block> TNT_X10 = register("tnt_x10",
-                        () -> new TNTX10(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
+                        () -> new BaseTNTBlock<>(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
                                         .strength(1.0f, 1.0f)
-                                        .sound(SoundType.GRASS)));
+                                        .sound(SoundType.GRASS),6*20,ModEntities.TNT_X10));
 
         // TNTX20 (20 times stronger than normal TNT)
         public static final RegistryObject<Block> TNT_X20 = register("tnt_x20",
-                        () -> new TNTX20(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
+                        () -> new BaseTNTBlock<>(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
                                         .strength(1.0f, 1.0f)
-                                        .sound(SoundType.GRASS)));
+                                        .sound(SoundType.GRASS),10*20,ModEntities.TNT_X20));
 
         // TNTX50 (50 times stronger than normal TNT)
         public static final RegistryObject<Block> TNT_X50 = register("tnt_x50",
-                        () -> new TNTX50(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
+                        () -> new BaseTNTBlock<>(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
                                         .strength(1.0f, 1.0f)
-                                        .sound(SoundType.GRASS)));
+                                        .sound(SoundType.GRASS),13*20,ModEntities.TNT_X50));
 
         // TNTX100 (100 times stronger than normal TNT)
         public static final RegistryObject<Block> TNT_X100 = register("tnt_x100",
-                        () -> new TNTX100(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
+                        () -> new BaseTNTBlock<>(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
                                         .strength(1.0f, 1.0f)
-                                        .sound(SoundType.GRASS)));
+                                        .sound(SoundType.GRASS),20*20,ModEntities.TNT_X100));
 
         // tntX500 (500 times stronger than normal TNT)
         public static final RegistryObject<Block> TNT_X500 = register("tnt_x500",
-                        () -> new TNTX100(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
+                        () -> new BaseTNTBlock<>(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
                                         .strength(1.0f, 1.0f)
-                                        .sound(SoundType.GRASS)));
+                                        .sound(SoundType.GRASS),20*20,ModEntities.TNT_X500));
 
         // TNTX1K (1000 times stronger than normal TNT)
         public static final RegistryObject<Block> TNT_X1K = register("tnt_x1k",
-                        () -> new TNTX1K(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
+                        () -> new BaseTNTBlock<>(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
                                         .strength(1.0f, 1.0f)
-                                        .sound(SoundType.GRASS)));
+                                        .sound(SoundType.GRASS),20 *20,ModEntities.TNT_X1K));
 
-        // drain tnt. it drains fluids
-        // /*
+
         public static final RegistryObject<Block> DRAIN_TNT = register("drain_tnt",
-                        () -> new DrainTNT(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
-                                        .strength(1.0f, 1.0f)
-                                        .sound(SoundType.GRASS)));
+                () -> new BaseTNTBlock<>(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
+                        .strength(1.0f, 1.0f)
+                        .sound(SoundType.GRASS), 8 * 20, ModEntities.DRAIN_TNT));
 
         //*/
         // drain tnt x5 (5 times stronger than normal drain tnt)
         public static final RegistryObject<Block> DRAIN_TNT_X5 = register("drain_tnt_x5",
-                        () -> new DrainTNTX5(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
+                        () -> new BaseTNTBlock<>(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
                                         .strength(1.0f, 1.0f)
-                                        .sound(SoundType.GRASS)));
+                                        .sound(SoundType.GRASS),8 * 20, ModEntities.DRAIN_TNT_5));
 
         // jumping tnt. it jumps
         public static final RegistryObject<Block> JUMPING_TNT = register("jumping_tnt",
-                        () -> new JumpingTNT(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
+                        () -> new BaseTNTBlock<>(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
                                         .strength(1.0f, 1.0f)
-                                        .sound(SoundType.GRASS)));
+                                        .sound(SoundType.GRASS),3*20,ModEntities.JUMPING_TNT));
 
         private static <T extends Block> RegistryObject<T> registerNoItem(String name, Supplier<T> block) {
                 return Registration.BLOCKS.register(name, block);
