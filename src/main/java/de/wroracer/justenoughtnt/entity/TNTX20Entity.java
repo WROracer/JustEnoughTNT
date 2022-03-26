@@ -10,7 +10,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
-public class TNTX20Entity extends BaseTNT{
+public class TNTX20Entity extends TNTEntity {
     public TNTX20Entity(EntityType<? extends Entity> entityType, Level level) {
         super(entityType, level);
     }

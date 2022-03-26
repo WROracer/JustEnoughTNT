@@ -11,7 +11,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 
-public class TNTX500Entity extends BaseTNT{
+public class TNTX500Entity extends TNTEntity {
     private HashMap<BlockPos, Explosion> explosions;
 
     public TNTX500Entity(EntityType<? extends Entity> entityType, Level level) {

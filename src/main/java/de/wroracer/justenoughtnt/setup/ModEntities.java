@@ -18,7 +18,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.RegistryObject;
-import org.checkerframework.checker.units.qual.A;
 
 import java.util.function.BiFunction;
 
@@ -79,6 +78,51 @@ public final class ModEntities {
             MobCategory.AMBIENT,
             (spawnEntity, level) -> new TNTX500Entity(level,spawnEntity.getPosX(),spawnEntity.getPosY(),spawnEntity.getPosZ(),null));
 
+    public static final RegistryObject<EntityType<CircleTNTEntity>> CIRCLE_TNT = register("primed_circle_tnt",
+            CircleTNTEntity::new,
+            MobCategory.AMBIENT,
+            ((spawnEntity, level) -> new CircleTNTEntity(level,spawnEntity.getPosX(),spawnEntity.getPosY(),spawnEntity.getPosZ(),null)));
+
+    public static final RegistryObject<EntityType<CubeTNTEntity>> CUBE_TNT = register("primed_cube_tnt",
+            CubeTNTEntity::new,
+            MobCategory.AMBIENT,
+            (spawnEntity, level) -> new CubeTNTEntity(level,spawnEntity.getPosX(),spawnEntity.getPosY(),spawnEntity.getPosZ(),null));
+
+    public static final RegistryObject<EntityType<DupstepTNTEntity>> DUPSTEP_TNT = register("primed_dupstep_tnt",
+            DupstepTNTEntity::new,
+            MobCategory.AMBIENT,
+            (spawnEntity, level) -> new DupstepTNTEntity(level,spawnEntity.getPosX(),spawnEntity.getPosY(),spawnEntity.getPosZ(),null));
+
+    public static final RegistryObject<EntityType<FlatTNTEntity>> FLAT_TNT = register("primed_flat_tnt",
+            FlatTNTEntity::new,
+            MobCategory.AMBIENT,
+            (spawnEntity, level) -> new FlatTNTEntity(level,spawnEntity.getPosX(),spawnEntity.getPosY(),spawnEntity.getPosZ(),null));
+
+    public static final RegistryObject<EntityType<FuseTNTEntity>> FUSE_TNT = register("primed_fuse_tnt",
+            FuseTNTEntity::new,
+            MobCategory.AMBIENT,
+            (spawnEntity, level) -> new FuseTNTEntity(level,spawnEntity.getPosX(),spawnEntity.getPosY(),spawnEntity.getPosZ(),null));
+
+    public static final RegistryObject<EntityType<OneJumpTNTEntity>> ONE_JUMP_TNT = register("primed_one_jump_tnt",
+            OneJumpTNTEntity::new,
+            MobCategory.AMBIENT,
+            (spawnEntity, level) -> new OneJumpTNTEntity(level,spawnEntity.getPosX(),spawnEntity.getPosY(),spawnEntity.getPosZ(),null));
+
+    public static final RegistryObject<EntityType<OreMinerTNTEntity>> ORE_MINER_TNT = register("primed_ore_miner_tnt",
+            OreMinerTNTEntity::new,
+            MobCategory.AMBIENT,
+            (spawnEntity, level) -> new OreMinerTNTEntity(level,spawnEntity.getPosX(),spawnEntity.getPosY(),spawnEntity.getPosZ(),null));
+    //Rain TNT
+    public static final RegistryObject<EntityType<RainTNTEntity>> RAIN_TNT = register("primed_rain_tnt",
+            RainTNTEntity::new,
+            MobCategory.AMBIENT,
+            (spawnEntity, level) -> new RainTNTEntity(level,spawnEntity.getPosX(),spawnEntity.getPosY(),spawnEntity.getPosZ(),null));
+    //Russian Roulette TNT
+    public static final RegistryObject<EntityType<RussianRouletteTNTEntity>> RUSSIAN_ROULETTE_TNT = register("primed_russian_roulette_tnt",
+            RussianRouletteTNTEntity::new,
+            MobCategory.AMBIENT,
+            (spawnEntity, level) -> new RussianRouletteTNTEntity(level,spawnEntity.getPosX(),spawnEntity.getPosY(),spawnEntity.getPosZ(),null));
+
     private ModEntities() {throw new IllegalAccessError("Utility class");}
 
     static void register() {}
@@ -106,13 +150,24 @@ public final class ModEntities {
             event.registerEntityRenderer(TNT_X50.get(),createEntityRenderer(ModBlocks.TNT_X50.get()));
             event.registerEntityRenderer(TNT_X100.get(),createEntityRenderer(ModBlocks.TNT_X100.get()));
             event.registerEntityRenderer(TNT_X500.get(),createEntityRenderer(ModBlocks.TNT_X500.get()));
+            event.registerEntityRenderer(CIRCLE_TNT.get(),createEntityRenderer(ModBlocks.CIRCLE_TNT.get()));
+            event.registerEntityRenderer(CUBE_TNT.get(),createEntityRenderer(ModBlocks.CUBE_TNT.get()));
+            event.registerEntityRenderer(FUSE_TNT.get(),createEntityRenderer(ModBlocks.FUSE_TNT.get()));
+            event.registerEntityRenderer(DUPSTEP_TNT.get(),createEntityRenderer(ModBlocks.DUPSTEP_TNT.get()));
+            event.registerEntityRenderer(FLAT_TNT.get(),createEntityRenderer(ModBlocks.FLAT_TNT.get()));
+            event.registerEntityRenderer(ONE_JUMP_TNT.get(),createEntityRenderer(ModBlocks.ONE_JUMP_TNT.get()));
+            event.registerEntityRenderer(ORE_MINER_TNT.get(),createEntityRenderer(ModBlocks.ORE_MINER_TNT.get()));
+            event.registerEntityRenderer(RAIN_TNT.get(),createEntityRenderer(ModBlocks.RAIN_TNT.get()));
+            event.registerEntityRenderer(RUSSIAN_ROULETTE_TNT.get(),createEntityRenderer(ModBlocks.RUSSIAN_ROULETTE_TNT.get()));
+
+
         }
 
-        private static EntityRendererProvider<BaseTNT> createEntityRenderer(Block base){
+        private static EntityRendererProvider<TNTEntity> createEntityRenderer(Block base){
             if (base instanceof BaseTNTBlock){
-                return new EntityRendererProvider<BaseTNT>() {
+                return new EntityRendererProvider<TNTEntity>() {
                     @Override
-                    public EntityRenderer<BaseTNT> create(Context context) {
+                    public EntityRenderer<TNTEntity> create(Context context) {
                         return new BaseTNTRenderer(context, (BaseTNTBlock) base);
                     }
                 };

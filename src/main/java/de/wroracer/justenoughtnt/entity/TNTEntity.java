@@ -1,7 +1,5 @@
 package de.wroracer.justenoughtnt.entity;
 
-import de.wroracer.justenoughtnt.block.BaseTNTBlock;
-import de.wroracer.justenoughtnt.setup.ModEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -16,19 +14,19 @@ import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 
-public class BaseTNT extends Entity {
+public class TNTEntity extends Entity {
 
-    private static final EntityDataAccessor<Integer> DATA_FUSE_ID = SynchedEntityData.defineId(BaseTNT.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> DATA_FUSE_ID = SynchedEntityData.defineId(TNTEntity.class, EntityDataSerializers.INT);
     private static final int DEFAULT_FUSE_TIME = 80;
     @Nullable
     private LivingEntity owner;
 
-    public BaseTNT(EntityType<? extends Entity> entityType, Level level) {
+    public TNTEntity(EntityType<? extends Entity> entityType, Level level) {
         super(entityType, level);
         this.blocksBuilding = true;
     }
 
-    public BaseTNT(EntityType<? extends Entity> entityType,Level level, double x, double y, double z, @Nullable LivingEntity livingEntity) {
+    public TNTEntity(EntityType<? extends Entity> entityType, Level level, double x, double y, double z, @Nullable LivingEntity livingEntity) {
         this(entityType, level);
         this.setPos(x, y, z);
         double d0 = level.random.nextDouble() * (double)((float)Math.PI * 2F);
@@ -38,6 +36,10 @@ public class BaseTNT extends Entity {
         this.yo = y;
         this.zo = z;
         this.owner = livingEntity;
+    }
+
+    public void setVelocity(double x, double y, double z) {
+        this.setDeltaMovement(x, y, z);
     }
 
     protected void defineSynchedData() {
@@ -92,22 +94,20 @@ public class BaseTNT extends Entity {
                 this.explode();
             }
         } else {
-            if (fuseTick(this)) {
 
-                if (!this.isNoGravity()) {
-                    this.setDeltaMovement(this.getDeltaMovement().add(0.0D, -0.04D, 0.0D));
-                }
+            if (!this.isNoGravity()) {
+                this.setDeltaMovement(this.getDeltaMovement().add(0.0D, -0.04D, 0.0D));
+            }
 
-                this.move(MoverType.SELF, this.getDeltaMovement());
-                this.setDeltaMovement(this.getDeltaMovement().scale(0.98D));
-                if (this.onGround) {
-                    this.setDeltaMovement(this.getDeltaMovement().multiply(0.7D, -0.5D, 0.7D));
-                }
-                this.updateInWaterStateAndDoFluidPushing();
-                if (this.level.isClientSide) {
-                    this.level.addParticle(ParticleTypes.SMOKE, this.getX(), this.getY() + 0.5D, this.getZ(), 0.0D,
-                            0.0D, 0.0D);
-                }
+            this.move(MoverType.SELF, this.getDeltaMovement());
+            this.setDeltaMovement(this.getDeltaMovement().scale(0.98D));
+            if (this.onGround) {
+                this.setDeltaMovement(this.getDeltaMovement().multiply(0.7D, -0.5D, 0.7D));
+            }
+            this.updateInWaterStateAndDoFluidPushing();
+            if (this.level.isClientSide) {
+                this.level.addParticle(ParticleTypes.SMOKE, this.getX(), this.getY() + 0.5D, this.getZ(), 0.0D,
+                        0.0D, 0.0D);
             }
         }
 
@@ -118,15 +118,11 @@ public class BaseTNT extends Entity {
         this.level.explode(this, this.getX(), this.getY(0.0625D), this.getZ(), 4.0F, Explosion.BlockInteraction.BREAK);
     }
 
-    public boolean fuseTick(BaseTNT tnt) {
-        return tntBlock.fuseTick(tnt);
-    }
-
     public BlockPos getPos() {
         return new BlockPos(this.getX(), this.getY(), this.getZ());
     }
 
-    public BaseTNT setOwner(@Nullable LivingEntity owner) {
+    public TNTEntity setOwner(@Nullable LivingEntity owner) {
         this.owner = owner;
         return this;
     }

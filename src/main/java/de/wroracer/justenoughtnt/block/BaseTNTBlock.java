@@ -1,6 +1,6 @@
 package de.wroracer.justenoughtnt.block;
 
-import de.wroracer.justenoughtnt.entity.BaseTNT;
+import de.wroracer.justenoughtnt.entity.TNTEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -10,12 +10,10 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.TntBlock;
@@ -24,9 +22,7 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.registries.RegistryObject;
 
-import java.util.function.Supplier;
-
-public class BaseTNTBlock<T extends BaseTNT> extends TntBlock {
+public class BaseTNTBlock<T extends TNTEntity> extends TntBlock {
 
     private int fuse = -1;
 
@@ -144,11 +140,11 @@ public class BaseTNTBlock<T extends BaseTNT> extends TntBlock {
         onFuse(tnt);
     }
 
-    public void onFuse(BaseTNT tnt) {
+    public void onFuse(TNTEntity tnt) {
 
     }
 
-    public boolean fuseTick(BaseTNT tnt) {
+    public boolean fuseTick(TNTEntity tnt) {
         return true;
 
     }

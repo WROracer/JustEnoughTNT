@@ -1,7 +1,7 @@
 package de.wroracer.justenoughtnt.entity;
 
 import de.wroracer.justenoughtnt.setup.ModEntities;
-import de.wroracer.justenoughtnt.util.Explosion;
+import de.wroracer.justenoughtnt.util.OreMinerExplosion;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -11,15 +11,16 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 
-public class TNTX50Entity extends TNTEntity {
-    private HashMap<BlockPos, Explosion> explosions;
-    public TNTX50Entity(EntityType<? extends Entity> entityType, Level level) {
+public class OreMinerTNTEntity extends TNTEntity {
+    private HashMap<BlockPos, OreMinerExplosion> explosions;
+    public OreMinerTNTEntity(EntityType<? extends Entity> entityType, Level level) {
         super(entityType, level);
         explosions = new HashMap<>();
     }
 
-    public TNTX50Entity( Level level, double x, double y, double z, @Nullable LivingEntity livingEntity) {
-        super(ModEntities.TNT_X50.get(), level, x, y, z, livingEntity);
+    public OreMinerTNTEntity( Level level, double x, double y, double z, @Nullable LivingEntity livingEntity) {
+        super(ModEntities.ORE_MINER_TNT.get(), level, x, y, z, livingEntity);
+        explosions = new HashMap<>();
     }
 
     @Override
@@ -27,10 +28,10 @@ public class TNTX50Entity extends TNTEntity {
         BlockPos pos = getPos();
 
         if (!explosions.containsKey(pos)) {
-            explosions.put(pos, new Explosion(getLevel(), pos,getOwner(), 30, 0.01D, 2D, 500)); //max 500 blocks per tick
+            explosions.put(pos, new OreMinerExplosion(getLevel(), pos, getOwner(), 30, 0D, 2D, 5)); //max 1 block per tick
         }
 
-        Explosion explosion = this.explosions.get(pos);
+        OreMinerExplosion explosion = this.explosions.get(pos);
 
         explosion.explode();
         if (explosion.tick()) {

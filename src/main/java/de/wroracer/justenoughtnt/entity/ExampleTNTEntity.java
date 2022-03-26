@@ -1,6 +1,5 @@
 package de.wroracer.justenoughtnt.entity;
 
-import de.wroracer.justenoughtnt.block.BaseTNTBlock;
 import de.wroracer.justenoughtnt.setup.ModEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
@@ -11,11 +10,11 @@ import net.minecraft.world.entity.item.PrimedTnt;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
-public class ExampleTNTEntity extends BaseTNT{
+public class ExampleTNTEntity extends TNTEntity {
     public ExampleTNTEntity(Level world, double x, double y, double z, LivingEntity igniter) {
         super(ModEntities.EXAMPLE_TNT.get(), world, x, y, z, igniter);
     }
-    public ExampleTNTEntity(EntityType<? extends BaseTNT> entityType, Level level) {
+    public ExampleTNTEntity(EntityType<? extends TNTEntity> entityType, Level level) {
         super(entityType, level);
         this.blocksBuilding = true;
     }

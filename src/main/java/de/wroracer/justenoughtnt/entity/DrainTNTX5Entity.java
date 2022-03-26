@@ -1,6 +1,5 @@
 package de.wroracer.justenoughtnt.entity;
 
-import de.wroracer.justenoughtnt.block.BaseTNTBlock;
 import de.wroracer.justenoughtnt.setup.ModEntities;
 import de.wroracer.justenoughtnt.util.DrainExplosion;
 import net.minecraft.core.BlockPos;
@@ -12,7 +11,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 
-public class DrainTNTX5Entity extends BaseTNT {
+public class DrainTNTX5Entity extends TNTEntity {
 
     private HashMap<BlockPos, DrainExplosion> explosions;
 

@@ -3,7 +3,6 @@ package de.wroracer.justenoughtnt.setup;
 import java.util.function.Supplier;
 
 import de.wroracer.justenoughtnt.block.*;
-import de.wroracer.justenoughtnt.entity.TNTX1KEntity;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -95,6 +94,46 @@ public class ModBlocks {
                         () -> new BaseTNTBlock<>(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
                                         .strength(1.0f, 1.0f)
                                         .sound(SoundType.GRASS),3*20,ModEntities.JUMPING_TNT));
+
+        public static final RegistryObject<Block> CIRCLE_TNT = register("circle_tnt",
+                ()-> new BaseTNTBlock<>(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
+                        .strength(1.0f,1.0f)
+                        .sound(SoundType.GRASS),3*20,ModEntities.CIRCLE_TNT));
+
+        public static final RegistryObject<Block> CUBE_TNT = register("cube_tnt",
+                ()-> new BaseTNTBlock<>(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
+                        .strength(1.0f,1.0f),3*20,ModEntities.CUBE_TNT));
+
+        public static final RegistryObject<DupstepTNT> DUPSTEP_TNT = register("dupstep_tnt",
+                ()-> new DupstepTNT(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
+                        .strength(1.0f,1.0f),3*20));
+
+        public static final RegistryObject<Block> FLAT_TNT = register("flat_tnt",
+                ()-> new BaseTNTBlock<>(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
+                        .strength(1.0f,1.0f),3*20,ModEntities.FLAT_TNT));
+
+        public static final RegistryObject<Block> FUSE_TNT = register("fuse_tnt",
+                ()-> new BaseTNTBlock<>(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
+                        .strength(1.0f,1.0f),3*20,ModEntities.FUSE_TNT));
+
+        public static final RegistryObject<Block> ONE_JUMP_TNT = register("one_jump_tnt",
+                ()-> new BaseTNTBlock<>(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
+                        .strength(1.0f,1.0f),3*20,ModEntities.ONE_JUMP_TNT));
+        //ore miner tnt block
+        public static final RegistryObject<Block> ORE_MINER_TNT = register("ore_miner_tnt",
+                ()-> new BaseTNTBlock<>(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
+                        .strength(1.0f,1.0f),3*20,ModEntities.ORE_MINER_TNT));
+        //Rain TNT<
+        public static final RegistryObject<Block> RAIN_TNT = register("rain_tnt",
+                ()-> new BaseTNTBlock<>(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
+                        .strength(1.0f,1.0f),3*20,ModEntities.RAIN_TNT));
+        //Russian Roulette TNT
+        public static final RegistryObject<Block> RUSSIAN_ROULETTE_TNT = register("russian_roulette_tnt",
+                ()-> new BaseTNTBlock<>(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
+                        .strength(1.0f,1.0f),3*20,ModEntities.RUSSIAN_ROULETTE_TNT));
+
+
+
 
         private static <T extends Block> RegistryObject<T> registerNoItem(String name, Supplier<T> block) {
                 return Registration.BLOCKS.register(name, block);

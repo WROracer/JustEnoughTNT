@@ -3,31 +3,27 @@ package de.wroracer.justenoughtnt.entity;
 import de.wroracer.justenoughtnt.setup.ModEntities;
 import de.wroracer.justenoughtnt.util.Explosion;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 
-public class TNTX50Entity extends TNTEntity {
-    private HashMap<BlockPos, Explosion> explosions;
-    public TNTX50Entity(EntityType<? extends Entity> entityType, Level level) {
+public class CircleTNTEntity extends TNTEntity {
+    public CircleTNTEntity(Level world, double x, double y, double z, LivingEntity igniter) {
+        super(ModEntities.CIRCLE_TNT.get(), world, x, y, z, igniter);
+    }
+    public CircleTNTEntity(EntityType<? extends TNTEntity> entityType, Level level) {
         super(entityType, level);
-        explosions = new HashMap<>();
     }
 
-    public TNTX50Entity( Level level, double x, double y, double z, @Nullable LivingEntity livingEntity) {
-        super(ModEntities.TNT_X50.get(), level, x, y, z, livingEntity);
-    }
+    private HashMap<BlockPos, Explosion> explosions = new HashMap<>();
 
     @Override
     public void explode() {
-        BlockPos pos = getPos();
-
+        BlockPos pos =getPos();
         if (!explosions.containsKey(pos)) {
-            explosions.put(pos, new Explosion(getLevel(), pos,getOwner(), 30, 0.01D, 2D, 500)); //max 500 blocks per tick
+            explosions.put(pos, new Explosion(getLevel(), pos, getOwner(), 10, 0D, 0, 1000)); //max 1000 blocks per tick
         }
 
         Explosion explosion = this.explosions.get(pos);
