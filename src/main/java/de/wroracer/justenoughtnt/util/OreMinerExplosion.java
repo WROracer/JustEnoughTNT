@@ -32,6 +32,10 @@ public class OreMinerExplosion extends Explosion {
     @Override
     public void destroyBlock(BlockPos pos) {
         Level world = this.getLevel();
+
+        if (this.getSource() == null) {
+            return;
+        }
         double x = this.getSource().getX();
         double y = this.getSource().getY();
         double z = this.getSource().getZ();

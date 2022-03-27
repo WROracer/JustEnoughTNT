@@ -99,8 +99,35 @@ public class Explosion {
                 }
             }
         }
+        blocks = roundOrder(blocks);
         JustEnoughTNT.LOGGER.info("Blocks: " + blocks.size());
         return blocks;
+    }
+
+    public ArrayList<BlockPos> roundOrder(ArrayList<BlockPos> blocks) {
+        ArrayList<DistanceStorage> distances = new ArrayList<DistanceStorage>();
+        ArrayList<BlockPos> rounded = new ArrayList<BlockPos>();
+
+        for (BlockPos blockPos : blocks) {
+            double distance = Math.sqrt(Math.pow(blockPos.getX() - pos.getX(), 2)
+                    + Math.pow(blockPos.getY() - pos.getY(), 2) + Math.pow(blockPos.getZ() - pos.getZ(), 2));
+            distances.add(new DistanceStorage(distance, blockPos));
+        }
+
+        distances.sort((DistanceStorage d1, DistanceStorage d2) -> {
+            if (d1.getDistance() < d2.getDistance())
+                return -1;
+            else if (d1.getDistance() > d2.getDistance())
+                return 1;
+            else
+                return 0;
+        });
+
+        for (DistanceStorage distance : distances) {
+            rounded.add(distance.getPos());
+        }
+
+        return rounded;
     }
 
     public boolean tick() {
@@ -109,6 +136,7 @@ public class Explosion {
         }
 
         if (currentTick == chunkBlocks.size()) {
+            this.explosionFinished();
             return true;
         }
 
@@ -118,7 +146,11 @@ public class Explosion {
         modifyWorld(blocks);
         // chunkBlocks.remove(blocks);
 
-        return currentTick >= chunkBlocks.size();
+        if (currentTick >= chunkBlocks.size()) {
+            this.explosionFinished();
+            return true;
+        }
+        return false;
     }
 
     public void modifyEntities() {
@@ -212,6 +244,10 @@ public class Explosion {
             world.destroyBlock(pos, drop);
         }
 
+    }
+
+    public void explosionFinished() {
+        JustEnoughTNT.LOGGER.info("Explosion finished");
     }
 
     public Level getLevel() {

@@ -52,6 +52,7 @@ public class FlatExplosion extends Explosion {
                 }
             }
         }
+        blocks = this.roundOrder(blocks);
         JustEnoughTNT.LOGGER.info("Blocks: " + blocks.size());
         return blocks;
     }
