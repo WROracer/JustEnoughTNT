@@ -131,6 +131,10 @@ public class ModBlocks {
         public static final RegistryObject<Block> RUSSIAN_ROULETTE_TNT = register("russian_roulette_tnt",
                 ()-> new BaseTNTBlock<>(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
                         .strength(1.0f,1.0f),3*20,ModEntities.RUSSIAN_ROULETTE_TNT));
+        //BlockChange TNT
+        public static final RegistryObject<Block> BLOCK_CHANGE_TNT = register("block_change_tnt",
+                ()-> new BaseTNTBlock<>(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
+                        .strength(1.0f,1.0f),3*20,ModEntities.BLOCK_CHANGE_TNT));
 
 
 

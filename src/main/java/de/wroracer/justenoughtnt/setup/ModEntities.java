@@ -122,6 +122,11 @@ public final class ModEntities {
             RussianRouletteTNTEntity::new,
             MobCategory.AMBIENT,
             (spawnEntity, level) -> new RussianRouletteTNTEntity(level,spawnEntity.getPosX(),spawnEntity.getPosY(),spawnEntity.getPosZ(),null));
+    //BlockChange TNT
+    public static final RegistryObject<EntityType<BlockChangeTNTEntity>> BLOCK_CHANGE_TNT = register("primed_block_change_tnt",
+            BlockChangeTNTEntity::new,
+            MobCategory.AMBIENT,
+            (spawnEntity, level) -> new BlockChangeTNTEntity(level,spawnEntity.getPosX(),spawnEntity.getPosY(),spawnEntity.getPosZ(),null));
 
     private ModEntities() {throw new IllegalAccessError("Utility class");}
 
@@ -159,6 +164,7 @@ public final class ModEntities {
             event.registerEntityRenderer(ORE_MINER_TNT.get(),createEntityRenderer(ModBlocks.ORE_MINER_TNT.get()));
             event.registerEntityRenderer(RAIN_TNT.get(),createEntityRenderer(ModBlocks.RAIN_TNT.get()));
             event.registerEntityRenderer(RUSSIAN_ROULETTE_TNT.get(),createEntityRenderer(ModBlocks.RUSSIAN_ROULETTE_TNT.get()));
+            event.registerEntityRenderer(BLOCK_CHANGE_TNT.get(),createEntityRenderer(ModBlocks.BLOCK_CHANGE_TNT.get()));
 
 
         }
