@@ -13,7 +13,7 @@ apply plugin: 'net.minecraftforge.gradle'
 
 group = 'de.wroracer'
 // MCVERSION-MAJORMOD.MAJORAPI.MINOR.PATCH
-version = '1.18.1-0.0.1.0'
+version = '1.18.1-0.0.2.0'
 
 java {
     archivesBaseName = 'JustEnoughTNT'
