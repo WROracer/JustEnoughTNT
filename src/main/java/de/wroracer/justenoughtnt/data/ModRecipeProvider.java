@@ -157,6 +157,19 @@ public class ModRecipeProvider extends RecipeProvider {
                                 .pattern("ppp")
                                 .save(consumer);
 
+                ShapelessRecipeBuilder.shapeless(ModBlocks.BLOCK_CHANGE_TNT.get(), 1)
+                                .unlockedBy("has_item", has(ModBlocks.TNT_X50.get()))
+                                .requires(Items.GRASS_BLOCK)
+                                .requires(Items.STONE)
+                                .requires(Items.DIRT)
+                                .requires(Items.DEEPSLATE)
+                                .requires(Items.DIORITE)
+                                .requires(Items.GRANITE)
+                                .requires(Items.OAK_LOG)
+                                .requires(Items.TERRACOTTA)
+                                .requires(ModBlocks.TNT_X50.get())
+                                .save(consumer);
+
                 //*/
 
                 /*
