@@ -28,20 +28,20 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlock(ModBlocks.TNT_X100.get());
         simpleBlock(ModBlocks.TNT_X500.get());
 
-        simpleBlock(ModBlocks.TNT_X1K.get());
-        simpleBlock(ModBlocks.DRAIN_TNT.get());
-        simpleBlock(ModBlocks.DRAIN_TNT_X5.get());
+        simpleBlock(ModBlocks.TNT_X1K.get(),getTopSideBottomsModel("tnt_x1k"));
+        simpleBlock(ModBlocks.DRAIN_TNT.get(),getTopSideBottomsModel("drain_tnt"));
+        simpleBlock(ModBlocks.DRAIN_TNT_X5.get(),getTopSideBottomsModel("drain_tnt_x5"));
 
-        simpleBlock(ModBlocks.JUMPING_TNT.get());
-        simpleBlock(ModBlocks.ONE_JUMP_TNT.get());
-        simpleBlock(ModBlocks.RUSSIAN_ROULETTE_TNT.get());
-        simpleBlock(ModBlocks.DUPSTEP_TNT.get());
-        simpleBlock(ModBlocks.RAIN_TNT.get());
-        simpleBlock(ModBlocks.ORE_MINER_TNT.get());
-        simpleBlock(ModBlocks.FLAT_TNT.get());
-        simpleBlock(ModBlocks.CIRCLE_TNT.get());
-        simpleBlock(ModBlocks.CUBE_TNT.get());
-        simpleBlock(ModBlocks.FUSE_TNT.get());
+        simpleBlock(ModBlocks.JUMPING_TNT.get(),getTopSideBottomsModel("jumping_tnt"));
+        simpleBlock(ModBlocks.ONE_JUMP_TNT.get(),getTopSideBottomsModel("one_jump_tnt"));
+        simpleBlock(ModBlocks.RUSSIAN_ROULETTE_TNT.get(),getTopSideBottomsModel("russian_roulette_tnt"));
+        simpleBlock(ModBlocks.DUPSTEP_TNT.get(),getTopSideBottomsModel("dupstep_tnt"));
+        simpleBlock(ModBlocks.RAIN_TNT.get(),getTopSideBottomsModel("rain_tnt"));
+        simpleBlock(ModBlocks.ORE_MINER_TNT.get(),getTopSideBottomsModel("ore_miner_tnt"));
+        simpleBlock(ModBlocks.FLAT_TNT.get(),getTopSideBottomsModel("flat_tnt"));
+        simpleBlock(ModBlocks.CIRCLE_TNT.get(),getTopSideBottomsModel("circle_tnt"));
+        simpleBlock(ModBlocks.CUBE_TNT.get(),getTopSideBottomsModel("cube_tnt"));
+        simpleBlock(ModBlocks.FUSE_TNT.get(),getTopSideBottomsModel("fuse_tnt"));
 
         //simpleBlock(ModBlocks.METAL_PRESS.get(),models().cube("metal_press",modId("block/metal_press_bottom"),modId("block/metal_press_top"),modId("block/metal_press_side"),modId("block/metal_press_side"),modId("block/metal_press_side"),modId("block/metal_press_side")));
 
