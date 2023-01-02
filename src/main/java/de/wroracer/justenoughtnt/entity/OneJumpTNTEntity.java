@@ -14,7 +14,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 
 public class OneJumpTNTEntity extends TNTEntity {
-    private int cycle = 1;
+    private int cycle = 8;
+
     public OneJumpTNTEntity(EntityType<? extends Entity> entityType, Level level) {
         super(entityType, level);
     }
@@ -32,28 +33,29 @@ public class OneJumpTNTEntity extends TNTEntity {
         BlockPos pos = getPos();
 
         if (cycle == 0) {
-            this.level.explode(this, this.getX(), this.getY(0.0625D), this.getZ(), 4.0F, Explosion.BlockInteraction.BREAK);
+            this.level.explode(this, this.getX(), this.getY(0.0625D), this.getZ(), 4.0F,
+                    Explosion.BlockInteraction.BREAK);
             discard();
         } else {
-            for (int i = 0; i < 2; i++) {
-                double x = pos.getX();
-                double y = pos.getY();
-                double z = pos.getZ();
-                OneJumpTNTEntity newTNT = ModEntities.ONE_JUMP_TNT.get().create(this.level);
-                assert newTNT != null;
 
-                //Move The Velocity of the new TNT to a Random Direction
-                Vec3 vec = new Vec3(this.random.nextDouble() * 0.5D - 0.1D, 1D, this.random.nextDouble() * 0.5D - 0.1D);
-                vec = vec.normalize();
-                System.out.println("Vec: " + vec.x + " " + vec.y + " " + vec.z);
-                newTNT.setVelocity(vec.x, vec.y, vec.z);
+            double x = pos.getX();
+            double y = pos.getY();
+            double z = pos.getZ();
+            OneJumpTNTEntity newTNT = ModEntities.ONE_JUMP_TNT.get().create(this.level);
+            assert newTNT != null;
 
-                newTNT.setPos(x, y, z);
-                newTNT.setCycle(cycle - 1);
-                newTNT.setFuse(50);
-                System.out.println("Spawned new TNT with cycle: " + cycle+" at "+x+" "+y+" "+z);
-                getLevel().addFreshEntity(newTNT);
-            }
+            //Move The Velocity of the new TNT to a Random Direction
+            Vec3 vec = new Vec3(this.random.nextDouble() * 0.5D - 0.1D, 1D, this.random.nextDouble() * 0.5D - 0.1D);
+            vec = vec.normalize();
+            System.out.println("Vec: " + vec.x + " " + vec.y + " " + vec.z);
+            newTNT.setVelocity(vec.x, vec.y, vec.z);
+
+            newTNT.setPos(x, y, z);
+            newTNT.setCycle(cycle - 1);
+            newTNT.setFuse(50);
+            System.out.println("Spawned new TNT with cycle: " + cycle + " at " + x + " " + y + " " + z);
+            getLevel().addFreshEntity(newTNT);
+
             discard();
 
         }
