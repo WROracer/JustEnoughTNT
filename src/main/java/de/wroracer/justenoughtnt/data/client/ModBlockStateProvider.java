@@ -4,6 +4,7 @@ import de.wroracer.justenoughtnt.JustEnoughTNT;
 import de.wroracer.justenoughtnt.setup.ModBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.client.model.generators.BlockModelBuilder;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
@@ -20,13 +21,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlock(ModBlocks.SULFUR_ORE.get());
         simpleBlock(ModBlocks.DEEPSLATE_SULFUR_ORE.get());
 
-        simpleBlock(ModBlocks.EXAMPLE_TNT.get());
-        simpleBlock(ModBlocks.TNT_X5.get());
-        simpleBlock(ModBlocks.TNT_X10.get());
-        simpleBlock(ModBlocks.TNT_X20.get());
-        simpleBlock(ModBlocks.TNT_X50.get());
-        simpleBlock(ModBlocks.TNT_X100.get());
-        simpleBlock(ModBlocks.TNT_X500.get());
+        simpleBlock(ModBlocks.EXAMPLE_TNT.get(),getTopSideBottomsModel("example_tnt"));
+        simpleBlock(ModBlocks.TNT_X5.get(),getTopSideBottomsModel("tnt_x5"));
+        simpleBlock(ModBlocks.TNT_X10.get(),getTopSideBottomsModel("tnt_x10"));
+        simpleBlock(ModBlocks.TNT_X20.get(),getTopSideBottomsModel("tnt_x20"));
+        simpleBlock(ModBlocks.TNT_X50.get(),getTopSideBottomsModel("tnt_x50"));
+        simpleBlock(ModBlocks.TNT_X100.get(),getTopSideBottomsModel("tnt_x100"));
+        simpleBlock(ModBlocks.TNT_X500.get(),getTopSideBottomsModel("tnt_x500"));
+
 
         simpleBlock(ModBlocks.TNT_X1K.get(),getTopSideBottomsModel("tnt_x1k"));
         simpleBlock(ModBlocks.DRAIN_TNT.get(),getTopSideBottomsModel("drain_tnt"));
@@ -46,6 +48,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
         //simpleBlock(ModBlocks.METAL_PRESS.get(),models().cube("metal_press",modId("block/metal_press_bottom"),modId("block/metal_press_top"),modId("block/metal_press_side"),modId("block/metal_press_side"),modId("block/metal_press_side"),modId("block/metal_press_side")));
 
     }
+
+    private BlockModelBuilder getTopSideBottomsModel(String folderName) {
+        //Folder Struckture: textures/block/tnt/folderName/top.pnng ... side.png ... bottom.png
+        return models().cube(folderName,modId("block/tnt/"+folderName+"/bottom"),modId("block/tnt/"+folderName+"/top"),modId("block/tnt/"+folderName+"/side"),modId("block/tnt/"+folderName+"/side"),modId("block/tnt/"+folderName+"/side"),modId("block/tnt/"+folderName+"/side"));
+    }
+
 
     private ResourceLocation modId(String path) {
         return new ResourceLocation(JustEnoughTNT.MOD_ID, path);
