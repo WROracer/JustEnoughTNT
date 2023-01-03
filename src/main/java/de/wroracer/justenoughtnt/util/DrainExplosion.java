@@ -27,7 +27,7 @@ public class DrainExplosion extends Explosion {
         boolean isDrainable = material.isLiquid() || material == Material.WATER_PLANT
                 || material == Material.REPLACEABLE_WATER_PLANT; // set to true if block is a liquid
 
-        JustEnoughTNT.LOGGER.debug("this.getLevel().getFluidState(pos) = " + this.getLevel().getFluidState(pos));
+        // JustEnoughTNT.LOGGER.debug("this.getLevel().getFluidState(pos) = " + this.getLevel().getFluidState(pos));
 
         return (!isDestructable && isDrainable) || block instanceof BaseTNTBlock;
     }
@@ -42,7 +42,7 @@ public class DrainExplosion extends Explosion {
             BaseTNTBlock tntBlock = (BaseTNTBlock) block;
             tntBlock.wasExplodedByJET(world, pos, (LivingEntity) this.getSource());
         } else {
-            world.setBlock(pos, Blocks.AIR.defaultBlockState(), 999999);
+            world.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
         }
 
     }
@@ -50,5 +50,10 @@ public class DrainExplosion extends Explosion {
     @Override
     public void modifyEntities() {
         // do nothing
+    }
+
+    @Override
+    public void explosionFinished() {
+        JustEnoughTNT.LOGGER.info("Drain finished");
     }
 }

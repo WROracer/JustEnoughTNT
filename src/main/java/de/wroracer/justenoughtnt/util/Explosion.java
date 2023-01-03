@@ -11,6 +11,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
@@ -229,7 +231,15 @@ public class Explosion {
     public boolean shouldDestroy(BlockPos pos) {
         Block block = world.getBlockState(pos).getBlock();
         boolean isDestructable = block == Blocks.BEDROCK || block == Blocks.AIR;
-        return !isDestructable;
+
+        return !isDestructable || liquidCheck(world.getBlockState(pos));
+    }
+
+    private boolean liquidCheck(BlockState blockState) {
+        Material material = blockState.getMaterial();
+        boolean isDrainable = material.isLiquid() || material == Material.WATER_PLANT
+                || material == Material.REPLACEABLE_WATER_PLANT;
+        return isDrainable;
     }
 
     public void destroyBlock(BlockPos pos) {
@@ -240,8 +250,13 @@ public class Explosion {
             BaseTNTBlock tntBlock = (BaseTNTBlock) block;
             tntBlock.wasExplodedByJET(world, pos, (LivingEntity) source);
         } else {
-            boolean drop = Math.random() <= dropChance;
-            world.destroyBlock(pos, drop);
+            if (liquidCheck(world.getBlockState(pos))) {
+                world.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
+            } else {
+
+                boolean drop = Math.random() <= dropChance;
+                world.destroyBlock(pos, drop);
+            }
         }
 
     }
@@ -296,6 +311,14 @@ public class Explosion {
 
     public void setRandomness(double randomness) {
         this.randomness = randomness;
+    }
+
+    public int getPerTick() {
+        return perTick;
+    }
+
+    public void setPerTick(int perTick) {
+        this.perTick = perTick;
     }
 
 }

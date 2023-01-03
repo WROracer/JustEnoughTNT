@@ -34,7 +34,7 @@ public class BaseTNTBlock<T extends TNTEntity> extends TntBlock {
         this.entityType = entityType;
     }
 
-    public BaseTNTBlock(Properties properties,RegistryObject<EntityType<T>> entityType) {
+    public BaseTNTBlock(Properties properties, RegistryObject<EntityType<T>> entityType) {
         super(properties);
         this.entityType = entityType;
     }
@@ -110,8 +110,13 @@ public class BaseTNTBlock<T extends TNTEntity> extends TntBlock {
     }
 
     public void wasExplodedByJET(Level world, BlockPos pos, LivingEntity cause) {
-        BaseTNTBlock block = (BaseTNTBlock) world.getBlockState(pos).getBlock();
-        int fuse = block.getFuse();
+        Block block = world.getBlockState(pos).getBlock();
+        BaseTNTBlock tntBlock;
+        if (block instanceof BaseTNTBlock)
+            tntBlock = (BaseTNTBlock) block;
+        else
+            return;
+        int fuse = tntBlock.getFuse();
         handleExploded(world, pos, cause, fuse);
     }
 

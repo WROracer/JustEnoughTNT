@@ -25,7 +25,7 @@ public class TNTX10Entity extends TNTEntity {
 
         world.playSound(null, getPos(), SoundEvents.GENERIC_EXPLODE, SoundSource.BLOCKS, 1f, 0.8f);
 
-        Explosion explosion = new Explosion(getLevel(), getPos(), getOwner(), 13f, 0.05D, 2D); // 1 tnt ~ 4 2 tnt ~ 6
+        Explosion explosion = new Explosion(getLevel(), getPos(), getOwner(), 19f, 0.05D, 2D); // 1 tnt ~ 4 2 tnt ~ 6
         explosion.explode();
 
         discard();
