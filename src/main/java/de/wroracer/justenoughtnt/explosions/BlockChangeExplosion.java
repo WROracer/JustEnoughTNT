@@ -1,4 +1,4 @@
-package de.wroracer.justenoughtnt.util;
+package de.wroracer.justenoughtnt.explosions;
 
 import de.wroracer.justenoughtnt.block.BaseTNTBlock;
 import de.wroracer.justenoughtnt.setup.ModBlocks;
@@ -10,18 +10,24 @@ import net.minecraft.world.level.block.AirBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.Tags;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
+import java.util.*;
 
 public class BlockChangeExplosion extends Explosion {
 
     private HashMap<Block, Block> blockChangeMap = new HashMap<>();
 
     public BlockChangeExplosion(Level world, BlockPos pos, Entity source, float radius, double dropChance,
-                                double randomness) {
+            double randomness) {
         super(world, pos, source, radius, dropChance, randomness);
+        blockChangeMap = new HashMap<>();
+        fillHashMap();
+    }
+
+    public BlockChangeExplosion(Level world, BlockPos pos, Entity source, float radius, double dropChance,
+            double randomness, int perTick) {
+        super(world, pos, source, radius, dropChance, randomness, perTick);
         blockChangeMap = new HashMap<>();
         fillHashMap();
     }
@@ -45,22 +51,11 @@ public class BlockChangeExplosion extends Explosion {
         System.out.println(blockChangeMap);
     }
 
-    public BlockChangeExplosion(Level world, BlockPos pos, Entity source, float radius, double dropChance,
-                                double randomness, int perTick) {
-        super(world, pos, source, radius, dropChance, randomness, perTick);
-        blockChangeMap = new HashMap<>();
-        fillHashMap();
-    }
-
-    @Override
-    public void modifyEntities() {
-        // do nothing
-    }
-
     @Override
     public boolean shouldDestroy(BlockPos pos) {
         Block block = getLevel().getBlockState(pos).getBlock();
-        boolean isDestructable = block == Blocks.BEDROCK || block instanceof AirBlock || (block.getRegistryName() == ModBlocks.BLOCK_CHANGE_TNT.get().getRegistryName());
+        boolean isDestructable = block == Blocks.BEDROCK || block instanceof AirBlock
+                || (block.getRegistryName() == ModBlocks.BLOCK_CHANGE_TNT.get().getRegistryName());
 
         return !isDestructable;
     }
@@ -91,6 +86,11 @@ public class BlockChangeExplosion extends Explosion {
 
         }
 
+    }
+
+    @Override
+    public void modifyEntities() {
+        // do nothing
     }
 
 }

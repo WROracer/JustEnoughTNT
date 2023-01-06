@@ -1,7 +1,8 @@
 package de.wroracer.justenoughtnt.entity;
 
+import de.wroracer.justenoughtnt.explosions.BlockChangeExplosion;
+import de.wroracer.justenoughtnt.explosions.OreMinerExplosion;
 import de.wroracer.justenoughtnt.setup.ModEntities;
-import de.wroracer.justenoughtnt.util.BlockChangeExplosion;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -12,7 +13,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 
 public class BlockChangeTNTEntity extends TNTEntity {
-    private final HashMap<BlockPos, BlockChangeExplosion> explosions;
+    private HashMap<BlockPos, BlockChangeExplosion> explosions;
 
     public BlockChangeTNTEntity(EntityType<? extends Entity> entityType, Level level) {
         super(entityType, level);

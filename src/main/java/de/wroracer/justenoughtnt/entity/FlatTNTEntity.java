@@ -1,7 +1,7 @@
 package de.wroracer.justenoughtnt.entity;
 
+import de.wroracer.justenoughtnt.explosions.FlatExplosion;
 import de.wroracer.justenoughtnt.setup.ModEntities;
-import de.wroracer.justenoughtnt.util.FlatExplosion;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -12,7 +12,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 
 public class FlatTNTEntity extends TNTEntity {
-    private final HashMap<BlockPos, FlatExplosion> explosions;
+    private HashMap<BlockPos, FlatExplosion> explosions;
 
     public FlatTNTEntity(EntityType<? extends Entity> entityType, Level level) {
         super(entityType, level);

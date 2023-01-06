@@ -1,4 +1,4 @@
-package de.wroracer.justenoughtnt.util;
+package de.wroracer.justenoughtnt.explosions;
 
 import de.wroracer.justenoughtnt.block.BaseTNTBlock;
 import net.minecraft.core.BlockPos;

@@ -1,4 +1,4 @@
-package de.wroracer.justenoughtnt.util;
+package de.wroracer.justenoughtnt.explosions;
 
 import de.wroracer.justenoughtnt.JustEnoughTNT;
 import de.wroracer.justenoughtnt.block.BaseTNTBlock;
