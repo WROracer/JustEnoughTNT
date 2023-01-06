@@ -43,6 +43,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         withExistingParent("circle_tnt", modLoc("block/circle_tnt"));
         withExistingParent("cube_tnt", modLoc("block/cube_tnt"));
         withExistingParent("fuse_tnt", modLoc("block/fuse_tnt"));
+        withExistingParent("block_change_tnt", modLoc("block/block_change_tnt"));
         // withExistingParent("farming_tnt", modLoc("block/farming_tnt"));
 
         //withExistingParent("metal_press",modLoc("block/metal_press"));

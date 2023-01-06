@@ -1,4 +1,4 @@
-package de.wroracer.justenoughtnt.util;
+package de.wroracer.justenoughtnt.explosions;
 
 import de.wroracer.justenoughtnt.block.BaseTNTBlock;
 import de.wroracer.justenoughtnt.setup.ModBlocks;
@@ -17,23 +17,23 @@ import java.util.*;
 
 public class BlockChangeExplosion extends Explosion {
 
-    private HashMap<Block,Block> blockChangeMap = new HashMap<>();
+    private HashMap<Block, Block> blockChangeMap = new HashMap<>();
 
     public BlockChangeExplosion(Level world, BlockPos pos, Entity source, float radius, double dropChance,
-                                double randomness) {
+            double randomness) {
         super(world, pos, source, radius, dropChance, randomness);
         blockChangeMap = new HashMap<>();
         fillHashMap();
     }
 
     public BlockChangeExplosion(Level world, BlockPos pos, Entity source, float radius, double dropChance,
-                                double randomness, int perTick) {
+            double randomness, int perTick) {
         super(world, pos, source, radius, dropChance, randomness, perTick);
         blockChangeMap = new HashMap<>();
         fillHashMap();
     }
 
-    private void fillHashMap(){
+    private void fillHashMap() {
         ArrayList<BlockPos> blockPos = getBlocks();
         ArrayList<Block> blocks = new ArrayList<>();
         //add all blocks to the list
@@ -55,7 +55,8 @@ public class BlockChangeExplosion extends Explosion {
     @Override
     public boolean shouldDestroy(BlockPos pos) {
         Block block = getLevel().getBlockState(pos).getBlock();
-        boolean isDestructable = block == Blocks.BEDROCK || block instanceof AirBlock || (block.getRegistryName() == ModBlocks.BLOCK_CHANGE_TNT.get().getRegistryName());
+        boolean isDestructable = block == Blocks.BEDROCK || block instanceof AirBlock
+                || (block.getRegistryName() == ModBlocks.BLOCK_CHANGE_TNT.get().getRegistryName());
 
         return !isDestructable;
     }

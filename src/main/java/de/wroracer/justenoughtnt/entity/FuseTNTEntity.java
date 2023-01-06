@@ -1,7 +1,7 @@
 package de.wroracer.justenoughtnt.entity;
 
+import de.wroracer.justenoughtnt.explosions.FuseExplosion;
 import de.wroracer.justenoughtnt.setup.ModEntities;
-import de.wroracer.justenoughtnt.util.FuseExplosion;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -13,6 +13,7 @@ import java.util.HashMap;
 
 public class FuseTNTEntity extends TNTEntity {
     private HashMap<BlockPos, FuseExplosion> explosions;
+
     public FuseTNTEntity(EntityType<? extends Entity> entityType, Level level) {
         super(entityType, level);
         explosions = new HashMap<>();

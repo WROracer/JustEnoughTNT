@@ -138,7 +138,7 @@ public class ModBlocks {
         public static final RegistryObject<Block> RUSSIAN_ROULETTE_TNT = register("russian_roulette_tnt",
                         () -> new BaseTNTBlock<>(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
                                         .sound(SoundType.GRASS)
-                                        .strength(1.0f, 1.0f), 3 * 20, ModEntities.RUSSIAN_ROULETTE_TNT));
+                                        .strength(1.0f, 1.0f), 0, ModEntities.RUSSIAN_ROULETTE_TNT));
         //BlockChange TNT
         public static final RegistryObject<Block> BLOCK_CHANGE_TNT = register("block_change_tnt",
                         () -> new BaseTNTBlock<>(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
@@ -150,6 +150,12 @@ public class ModBlocks {
                         () -> new BaseTNTBlock<>(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
                                         .sound(SoundType.GRASS)
                                         .strength(1.0f, 1.0f), 3 * 20, ModEntities.FARMING_TNT));
+
+        // island tnt
+        public static final RegistryObject<Block> ISLAND_TNT = register("island_tnt",
+                        () -> new BaseTNTBlock<>(BlockBehaviour.Properties.of(Material.EXPLOSIVE)
+                                        .sound(SoundType.GRASS)
+                                        .strength(1.0f, 1.0f), 3 * 20, ModEntities.ISLAND_TNT));
 
         private static <T extends Block> RegistryObject<T> registerNoItem(String name, Supplier<T> block) {
                 return Registration.BLOCKS.register(name, block);

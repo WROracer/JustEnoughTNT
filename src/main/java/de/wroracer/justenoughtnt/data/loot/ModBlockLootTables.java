@@ -50,6 +50,7 @@ public class ModBlockLootTables extends BlockLoot {
                 dropSelf(ModBlocks.FUSE_TNT.get());
                 dropSelf(ModBlocks.BLOCK_CHANGE_TNT.get());
                 dropSelf(ModBlocks.FARMING_TNT.get());
+                dropSelf(ModBlocks.ISLAND_TNT.get());
 
                 add(ModBlocks.SULFUR_ORE.get(),
                                 createOreDrop(ModBlocks.SULFUR_ORE.get(), ModItems.SULFUR_DUST.get()));

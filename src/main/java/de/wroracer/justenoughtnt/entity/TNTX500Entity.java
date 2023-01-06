@@ -1,7 +1,7 @@
 package de.wroracer.justenoughtnt.entity;
 
+import de.wroracer.justenoughtnt.explosions.Explosion;
 import de.wroracer.justenoughtnt.setup.ModEntities;
-import de.wroracer.justenoughtnt.util.Explosion;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -28,7 +28,7 @@ public class TNTX500Entity extends TNTEntity {
         BlockPos pos = getPos();
 
         if (!explosions.containsKey(pos)) {
-            explosions.put(pos, new Explosion(getLevel(), pos,getOwner(), 67, 0D, 2D, 1000)); //max 1000 blocks per tick
+            explosions.put(pos, new Explosion(getLevel(), pos, getOwner(), 67, 0D, 2D, 1000)); //max 1000 blocks per tick
         }
 
         Explosion explosion = this.explosions.get(pos);

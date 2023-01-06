@@ -1,7 +1,7 @@
 package de.wroracer.justenoughtnt.entity;
 
+import de.wroracer.justenoughtnt.explosions.Explosion;
 import de.wroracer.justenoughtnt.setup.ModEntities;
-import de.wroracer.justenoughtnt.util.Explosion;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
@@ -15,7 +15,7 @@ public class TNTX20Entity extends TNTEntity {
         super(entityType, level);
     }
 
-    public TNTX20Entity( Level level, double x, double y, double z, @Nullable LivingEntity livingEntity) {
+    public TNTX20Entity(Level level, double x, double y, double z, @Nullable LivingEntity livingEntity) {
         super(ModEntities.TNT_X20.get(), level, x, y, z, livingEntity);
     }
 

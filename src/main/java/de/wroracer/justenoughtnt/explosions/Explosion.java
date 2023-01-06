@@ -1,9 +1,10 @@
-package de.wroracer.justenoughtnt.util;
+package de.wroracer.justenoughtnt.explosions;
 
 import java.util.ArrayList;
 
 import de.wroracer.justenoughtnt.JustEnoughTNT;
 import de.wroracer.justenoughtnt.block.BaseTNTBlock;
+import de.wroracer.justenoughtnt.util.DistanceStorage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;

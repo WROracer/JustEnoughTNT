@@ -4,9 +4,9 @@ import java.util.HashMap;
 
 import org.jetbrains.annotations.Nullable;
 
+import de.wroracer.justenoughtnt.explosions.OreMinerExplosion;
 import de.wroracer.justenoughtnt.setup.ModBlocks;
 import de.wroracer.justenoughtnt.setup.ModEntities;
-import de.wroracer.justenoughtnt.util.OreMinerExplosion;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;

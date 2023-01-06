@@ -5,7 +5,7 @@ import java.util.HashMap;
 import org.jetbrains.annotations.Nullable;
 
 import de.wroracer.justenoughtnt.explosions.Explosion;
-import de.wroracer.justenoughtnt.explosions.FarmExplosion;
+import de.wroracer.justenoughtnt.explosions.IslandExplosion;
 import de.wroracer.justenoughtnt.setup.ModEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
@@ -13,16 +13,17 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 
-public class FarmingTNTEntity extends TNTEntity {
-    private HashMap<BlockPos, FarmExplosion> explosions;
+public class IslandTNTEntity extends TNTEntity {
 
-    public FarmingTNTEntity(EntityType<? extends Entity> entityType, Level level) {
+    private HashMap<BlockPos, Explosion> explosions;
+
+    public IslandTNTEntity(EntityType<? extends Entity> entityType, Level level) {
         super(entityType, level);
         explosions = new HashMap<>();
     }
 
-    public FarmingTNTEntity(Level level, double x, double y, double z, @Nullable LivingEntity livingEntity) {
-        super(ModEntities.FARMING_TNT.get(), level, x, y, z, livingEntity);
+    public IslandTNTEntity(Level level, double x, double y, double z, @Nullable LivingEntity livingEntity) {
+        super(ModEntities.TNT_X50.get(), level, x, y, z, livingEntity);
     }
 
     @Override
@@ -30,10 +31,10 @@ public class FarmingTNTEntity extends TNTEntity {
         BlockPos pos = getPos();
 
         if (!explosions.containsKey(pos)) {
-            explosions.put(pos, new FarmExplosion(getLevel(), pos, getOwner(), 13, 0D, 0D, 1000)); //max 1000 blocks per tick
+            explosions.put(pos, new IslandExplosion(getLevel(), pos, getOwner(), 19f, 0, 300, 50)); //max 500 blocks per tick
         }
 
-        FarmExplosion explosion = this.explosions.get(pos);
+        Explosion explosion = this.explosions.get(pos);
 
         explosion.explode();
         if (explosion.tick()) {

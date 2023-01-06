@@ -1,7 +1,7 @@
 package de.wroracer.justenoughtnt.entity;
 
+import de.wroracer.justenoughtnt.explosions.DrainExplosion;
 import de.wroracer.justenoughtnt.setup.ModEntities;
-import de.wroracer.justenoughtnt.util.DrainExplosion;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -15,6 +15,7 @@ public class DrainTNTEntity extends TNTEntity {
         this.blocksBuilding = true;
         explosions = new HashMap<>();
     }
+
     public DrainTNTEntity(EntityType<? extends TNTEntity> entityType, Level level) {
         super(entityType, level);
         this.blocksBuilding = true;

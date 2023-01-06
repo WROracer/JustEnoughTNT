@@ -1,7 +1,7 @@
 package de.wroracer.justenoughtnt.entity;
 
+import de.wroracer.justenoughtnt.explosions.Explosion;
 import de.wroracer.justenoughtnt.setup.ModEntities;
-import de.wroracer.justenoughtnt.util.Explosion;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -13,6 +13,7 @@ public class CircleTNTEntity extends TNTEntity {
     public CircleTNTEntity(Level world, double x, double y, double z, LivingEntity igniter) {
         super(ModEntities.CIRCLE_TNT.get(), world, x, y, z, igniter);
     }
+
     public CircleTNTEntity(EntityType<? extends TNTEntity> entityType, Level level) {
         super(entityType, level);
     }
@@ -21,7 +22,7 @@ public class CircleTNTEntity extends TNTEntity {
 
     @Override
     public void explode() {
-        BlockPos pos =getPos();
+        BlockPos pos = getPos();
         if (!explosions.containsKey(pos)) {
             explosions.put(pos, new Explosion(getLevel(), pos, getOwner(), 10, 0D, 0, 1000)); //max 1000 blocks per tick
         }

@@ -159,6 +159,13 @@ public final class ModEntities {
                         (spawnEntity, level) -> new FarmingTNTEntity(level, spawnEntity.getPosX(),
                                         spawnEntity.getPosY(), spawnEntity.getPosZ(), null));
 
+        //island TNT
+        public static final RegistryObject<EntityType<IslandTNTEntity>> ISLAND_TNT = register("primed_island_tnt",
+                        IslandTNTEntity::new,
+                        MobCategory.AMBIENT,
+                        (spawnEntity, level) -> new IslandTNTEntity(level, spawnEntity.getPosX(),
+                                        spawnEntity.getPosY(), spawnEntity.getPosZ(), null));
+
         private ModEntities() {
                 throw new IllegalAccessError("Utility class");
         }
@@ -213,6 +220,10 @@ public final class ModEntities {
 
                         event.registerEntityRenderer(FARMING_TNT.get(),
                                         createEntityRenderer(ModBlocks.FARMING_TNT.get()));
+
+                        // island TNT
+                        event.registerEntityRenderer(ISLAND_TNT.get(),
+                                        createEntityRenderer(ModBlocks.ISLAND_TNT.get()));
 
                 }
 
