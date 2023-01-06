@@ -15,7 +15,7 @@ public class TNTX20Entity extends TNTEntity {
         super(entityType, level);
     }
 
-    public TNTX20Entity( Level level, double x, double y, double z, @Nullable LivingEntity livingEntity) {
+    public TNTX20Entity(Level level, double x, double y, double z, @Nullable LivingEntity livingEntity) {
         super(ModEntities.TNT_X20.get(), level, x, y, z, livingEntity);
     }
 

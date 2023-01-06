@@ -9,7 +9,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class ModItemTagsProvider extends ItemTagsProvider {
     public ModItemTagsProvider(DataGenerator dataGenerator, BlockTagsProvider blockTagProvider,
-            ExistingFileHelper existingFileHelper) {
+                               ExistingFileHelper existingFileHelper) {
         super(dataGenerator, blockTagProvider, JustEnoughTNT.MOD_ID, existingFileHelper);
     }
 

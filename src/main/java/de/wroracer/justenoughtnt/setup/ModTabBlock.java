@@ -17,12 +17,12 @@ public class ModTabBlock extends CreativeModeTab {
         this.block = block;
     }
 
+    public static void register() {
+
+    }
+
     @Override
     public ItemStack makeIcon() {
         return new ItemStack(block.get().asItem());
-    }
-
-    public static void register() {
-
     }
 }

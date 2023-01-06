@@ -16,7 +16,7 @@ import java.util.Objects;
 
 public class BaseTNTRenderer<T extends BaseTNTBlock> extends EntityRenderer<TNTEntity> {
 
-    private T block;
+    private final T block;
 
     public BaseTNTRenderer(EntityRendererProvider.Context context, T bock) {
         super(context);
@@ -27,8 +27,8 @@ public class BaseTNTRenderer<T extends BaseTNTBlock> extends EntityRenderer<TNTE
         p_116180_.pushPose();
         p_116180_.translate(0.0D, 0.5D, 0.0D);
         int i = tntEntity.getFuse();
-        if ((float)i - p_116179_ + 1.0F < 10.0F) {
-            float f = 1.0F - ((float)i - p_116179_ + 1.0F) / 10.0F;
+        if ((float) i - p_116179_ + 1.0F < 10.0F) {
+            float f = 1.0F - ((float) i - p_116179_ + 1.0F) / 10.0F;
             f = Mth.clamp(f, 0.0F, 1.0F);
             f *= f;
             f *= f;

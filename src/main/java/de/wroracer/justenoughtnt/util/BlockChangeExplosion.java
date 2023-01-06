@@ -5,19 +5,19 @@ import de.wroracer.justenoughtnt.setup.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AirBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.Tags;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 
 public class BlockChangeExplosion extends Explosion {
 
-    private HashMap<Block,Block> blockChangeMap = new HashMap<>();
+    private HashMap<Block, Block> blockChangeMap = new HashMap<>();
 
     public BlockChangeExplosion(Level world, BlockPos pos, Entity source, float radius, double dropChance,
                                 double randomness) {
@@ -26,14 +26,7 @@ public class BlockChangeExplosion extends Explosion {
         fillHashMap();
     }
 
-    public BlockChangeExplosion(Level world, BlockPos pos, Entity source, float radius, double dropChance,
-                                double randomness, int perTick) {
-        super(world, pos, source, radius, dropChance, randomness, perTick);
-        blockChangeMap = new HashMap<>();
-        fillHashMap();
-    }
-
-    private void fillHashMap(){
+    private void fillHashMap() {
         ArrayList<BlockPos> blockPos = getBlocks();
         ArrayList<Block> blocks = new ArrayList<>();
         //add all blocks to the list
@@ -52,6 +45,18 @@ public class BlockChangeExplosion extends Explosion {
         System.out.println(blockChangeMap);
     }
 
+    public BlockChangeExplosion(Level world, BlockPos pos, Entity source, float radius, double dropChance,
+                                double randomness, int perTick) {
+        super(world, pos, source, radius, dropChance, randomness, perTick);
+        blockChangeMap = new HashMap<>();
+        fillHashMap();
+    }
+
+    @Override
+    public void modifyEntities() {
+        // do nothing
+    }
+
     @Override
     public boolean shouldDestroy(BlockPos pos) {
         Block block = getLevel().getBlockState(pos).getBlock();
@@ -64,9 +69,8 @@ public class BlockChangeExplosion extends Explosion {
     public void destroyBlock(BlockPos pos) {
         Level world = this.getLevel();
         Block block = world.getBlockState(pos).getBlock();
-        if (block instanceof BaseTNTBlock) {
+        if (block instanceof BaseTNTBlock tntBlock) {
             // it is one of our tnt blocks
-            BaseTNTBlock tntBlock = (BaseTNTBlock) block;
             tntBlock.wasExplodedByJET(world, pos, (LivingEntity) this.getSource());
         } else {
             // set the block to air
@@ -87,11 +91,6 @@ public class BlockChangeExplosion extends Explosion {
 
         }
 
-    }
-
-    @Override
-    public void modifyEntities() {
-        // do nothing
     }
 
 }

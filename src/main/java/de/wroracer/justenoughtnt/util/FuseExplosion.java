@@ -13,7 +13,7 @@ public class FuseExplosion extends Explosion {
     }
 
     public FuseExplosion(Level world, BlockPos pos, Entity source, float radius, double dropChance, double randomness,
-            int perTick) {
+                         int perTick) {
         super(world, pos, source, radius, dropChance, randomness, perTick);
     }
 

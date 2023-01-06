@@ -1,30 +1,22 @@
 package de.wroracer.justenoughtnt.util;
 
-import java.util.ArrayList;
-
-import de.wroracer.justenoughtnt.JustEnoughTNT;
 import de.wroracer.justenoughtnt.block.BaseTNTBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
 
+import java.util.ArrayList;
+
 public class FarmExplosion extends Explosion {
-    private ArrayList<Block> crops = new ArrayList<>();
+    private final ArrayList<Block> crops = new ArrayList<>();
 
     public FarmExplosion(Level world, BlockPos pos, Entity source, float radius, double dropChance, double randomness) {
         super(world, pos, source, radius, dropChance, randomness);
-        initCrops();
-    }
-
-    public FarmExplosion(Level world, BlockPos pos, Entity source, float radius, double dropChance, double randomness,
-            int perTick) {
-        super(world, pos, source, radius, dropChance, randomness, perTick);
         initCrops();
     }
 
@@ -48,6 +40,12 @@ public class FarmExplosion extends Explosion {
         crops.add(Blocks.WHEAT);
         crops.add(Blocks.MELON_STEM);
         crops.add(Blocks.PUMPKIN_STEM);
+    }
+
+    public FarmExplosion(Level world, BlockPos pos, Entity source, float radius, double dropChance, double randomness,
+                         int perTick) {
+        super(world, pos, source, radius, dropChance, randomness, perTick);
+        initCrops();
     }
 
     @Override
@@ -85,10 +83,7 @@ public class FarmExplosion extends Explosion {
 
         if (dirtCheck(block)) {
             this.getLevel().setBlockAndUpdate(pos, Blocks.FARMLAND.defaultBlockState());
-        } else
-
-        if (block instanceof BaseTNTBlock) {
-            BaseTNTBlock tntBlock = (BaseTNTBlock) block;
+        } else if (block instanceof BaseTNTBlock tntBlock) {
             tntBlock.wasExplodedByJET(this.getLevel(), this.getPos(), (LivingEntity) this.getSource());
         }
         if (airCheck(above)) {

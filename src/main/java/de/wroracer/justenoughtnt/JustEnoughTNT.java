@@ -1,12 +1,11 @@
 package de.wroracer.justenoughtnt;
 
-import de.wroracer.justenoughtnt.util.ModResourceLocation;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import de.wroracer.justenoughtnt.setup.Registration;
+import de.wroracer.justenoughtnt.util.ModResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("justenoughtnt")

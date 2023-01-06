@@ -13,8 +13,13 @@ import net.minecraft.world.level.material.Material;
 public class DrainExplosion extends Explosion {
 
     public DrainExplosion(Level world, BlockPos pos, Entity source, float radius, double dropChance, double randomness,
-            int inTicks) {
+                          int inTicks) {
         super(world, pos, source, radius, dropChance, randomness, inTicks);
+    }
+
+    @Override
+    public void modifyEntities() {
+        // do nothing
     }
 
     @Override
@@ -37,19 +42,13 @@ public class DrainExplosion extends Explosion {
         Level world = this.getLevel();
 
         Block block = world.getBlockState(pos).getBlock();
-        if (block instanceof BaseTNTBlock) {
+        if (block instanceof BaseTNTBlock tntBlock) {
             // it is one of our tnt blocks
-            BaseTNTBlock tntBlock = (BaseTNTBlock) block;
             tntBlock.wasExplodedByJET(world, pos, (LivingEntity) this.getSource());
         } else {
             world.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
         }
 
-    }
-
-    @Override
-    public void modifyEntities() {
-        // do nothing
     }
 
     @Override

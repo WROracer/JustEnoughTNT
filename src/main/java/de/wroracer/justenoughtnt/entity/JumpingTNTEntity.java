@@ -10,22 +10,16 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
-
 public class JumpingTNTEntity extends TNTEntity {
 
     private int cycle = 8;
 
-    public JumpingTNTEntity( Level level, double x, double y, double z, @Nullable LivingEntity livingEntity) {
+    public JumpingTNTEntity(Level level, double x, double y, double z, @Nullable LivingEntity livingEntity) {
         super(ModEntities.JUMPING_TNT.get(), level, x, y, z, livingEntity);
     }
 
     public JumpingTNTEntity(EntityType<? extends Entity> entityType, Level level) {
         super(entityType, level);
-    }
-
-    private void setCycle(int cycle) {
-        this.cycle = cycle;
     }
 
     @Override
@@ -57,5 +51,9 @@ public class JumpingTNTEntity extends TNTEntity {
             discard();
 
         }
+    }
+
+    private void setCycle(int cycle) {
+        this.cycle = cycle;
     }
 }

@@ -5,13 +5,10 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.item.PrimedTnt;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.HashMap;
 
 public class OneJumpTNTEntity extends TNTEntity {
     private int cycle = 8;
@@ -22,10 +19,6 @@ public class OneJumpTNTEntity extends TNTEntity {
 
     public OneJumpTNTEntity(Level level, double x, double y, double z, @Nullable LivingEntity livingEntity) {
         super(ModEntities.ONE_JUMP_TNT.get(), level, x, y, z, livingEntity);
-    }
-
-    public void setCycle(int cycle) {
-        this.cycle = cycle;
     }
 
     @Override
@@ -59,5 +52,9 @@ public class OneJumpTNTEntity extends TNTEntity {
             discard();
 
         }
+    }
+
+    public void setCycle(int cycle) {
+        this.cycle = cycle;
     }
 }

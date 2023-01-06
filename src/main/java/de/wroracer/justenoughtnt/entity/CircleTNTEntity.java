@@ -10,18 +10,19 @@ import net.minecraft.world.level.Level;
 import java.util.HashMap;
 
 public class CircleTNTEntity extends TNTEntity {
+    private final HashMap<BlockPos, Explosion> explosions = new HashMap<>();
+
     public CircleTNTEntity(Level world, double x, double y, double z, LivingEntity igniter) {
         super(ModEntities.CIRCLE_TNT.get(), world, x, y, z, igniter);
     }
+
     public CircleTNTEntity(EntityType<? extends TNTEntity> entityType, Level level) {
         super(entityType, level);
     }
 
-    private HashMap<BlockPos, Explosion> explosions = new HashMap<>();
-
     @Override
     public void explode() {
-        BlockPos pos =getPos();
+        BlockPos pos = getPos();
         if (!explosions.containsKey(pos)) {
             explosions.put(pos, new Explosion(getLevel(), pos, getOwner(), 10, 0D, 0, 1000)); //max 1000 blocks per tick
         }

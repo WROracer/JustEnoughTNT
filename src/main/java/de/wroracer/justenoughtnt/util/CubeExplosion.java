@@ -1,11 +1,11 @@
 package de.wroracer.justenoughtnt.util;
 
-import java.util.ArrayList;
-
 import de.wroracer.justenoughtnt.JustEnoughTNT;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
+
+import java.util.ArrayList;
 
 public class CubeExplosion extends Explosion {
 
@@ -14,7 +14,7 @@ public class CubeExplosion extends Explosion {
     }
 
     public CubeExplosion(Level world, BlockPos pos, Entity source, float radius, double dropChance, double randomness,
-            int perTick) {
+                         int perTick) {
         super(world, pos, source, radius, dropChance, randomness, perTick);
     }
 

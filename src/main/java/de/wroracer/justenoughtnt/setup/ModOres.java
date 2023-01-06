@@ -19,16 +19,14 @@ import net.minecraftforge.event.world.BiomeLoadingEvent;
 public class ModOres {
 
 
+    public static void addOres(final BiomeLoadingEvent event) {
 
-
-    public static void addOres(final BiomeLoadingEvent event){
-
-        addOre(event, OreFeatures.STONE_ORE_REPLACEABLES,ModBlocks.SULFUR_ORE.get().defaultBlockState(), "sulfur_ore",5,3,90,0);
-        addOre(event,OreFeatures.DEEPSLATE_ORE_REPLACEABLES,ModBlocks.DEEPSLATE_SULFUR_ORE.get().defaultBlockState(),"deepslate_sulfur_ore",10,6,0,-60);
+        addOre(event, OreFeatures.STONE_ORE_REPLACEABLES, ModBlocks.SULFUR_ORE.get().defaultBlockState(), "sulfur_ore", 5, 3, 90, 0);
+        addOre(event, OreFeatures.DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEPSLATE_SULFUR_ORE.get().defaultBlockState(), "deepslate_sulfur_ore", 10, 6, 0, -60);
 
     }
 
-    private static void addOre(BiomeLoadingEvent event,RuleTest rule,BlockState state,String registryName , int veinSize, int amount, int maxHeight, int minHeight){
+    private static void addOre(BiomeLoadingEvent event, RuleTest rule, BlockState state, String registryName, int veinSize, int amount, int maxHeight, int minHeight) {
         event.getGeneration().addFeature(
                 GenerationStep.Decoration.UNDERGROUND_ORES, registerPlacedFeature(
                         registryName,

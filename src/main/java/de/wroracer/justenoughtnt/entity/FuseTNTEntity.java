@@ -12,7 +12,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 
 public class FuseTNTEntity extends TNTEntity {
-    private HashMap<BlockPos, FuseExplosion> explosions;
+    private final HashMap<BlockPos, FuseExplosion> explosions;
+
     public FuseTNTEntity(EntityType<? extends Entity> entityType, Level level) {
         super(entityType, level);
         explosions = new HashMap<>();

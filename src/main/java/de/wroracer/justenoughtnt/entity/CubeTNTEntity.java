@@ -12,6 +12,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 
 public class CubeTNTEntity extends TNTEntity {
+    private final HashMap<BlockPos, CubeExplosion> explosions = new HashMap<>();
+
     public CubeTNTEntity(EntityType<? extends Entity> entityType, Level level) {
         super(entityType, level);
     }
@@ -19,8 +21,6 @@ public class CubeTNTEntity extends TNTEntity {
     public CubeTNTEntity(Level level, double x, double y, double z, @Nullable LivingEntity livingEntity) {
         super(ModEntities.CUBE_TNT.get(), level, x, y, z, livingEntity);
     }
-
-    private HashMap<BlockPos, CubeExplosion> explosions = new HashMap<>();
 
     @Override
     public void explode() {

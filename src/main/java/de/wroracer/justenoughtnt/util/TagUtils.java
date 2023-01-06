@@ -9,7 +9,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
 public final class TagUtils {
-    private TagUtils() {throw new IllegalAccessError("Utility class");}
+    private TagUtils() {
+        throw new IllegalAccessError("Utility class");
+    }
 
 
     public static boolean containsSafe(Tag<Item> tag, ItemStack stack) {

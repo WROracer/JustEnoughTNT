@@ -1,7 +1,6 @@
 package de.wroracer.justenoughtnt.entity;
 
 import de.wroracer.justenoughtnt.setup.ModEntities;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -14,15 +13,9 @@ public class DupstepTNTEntity extends TNTEntity {
         super(entityType, level);
     }
 
-    public DupstepTNTEntity( Level level, double x, double y, double z, @Nullable LivingEntity livingEntity) {
+    public DupstepTNTEntity(Level level, double x, double y, double z, @Nullable LivingEntity livingEntity) {
         super(ModEntities.DUPSTEP_TNT.get(), level, x, y, z, livingEntity);
     }
-
-    @Override
-    public void explode() {
-        this.discard();
-    }
-
 
     @Override
     public void tick() {
@@ -37,5 +30,10 @@ public class DupstepTNTEntity extends TNTEntity {
             world.addFreshEntity(newTnt);
 
         }
+    }
+
+    @Override
+    public void explode() {
+        this.discard();
     }
 }

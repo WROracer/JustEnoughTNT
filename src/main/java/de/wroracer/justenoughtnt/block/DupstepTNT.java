@@ -1,7 +1,7 @@
 package de.wroracer.justenoughtnt.block;
 
-import de.wroracer.justenoughtnt.entity.TNTEntity;
 import de.wroracer.justenoughtnt.entity.DupstepTNTEntity;
+import de.wroracer.justenoughtnt.entity.TNTEntity;
 import de.wroracer.justenoughtnt.setup.ModEntities;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.level.Level;

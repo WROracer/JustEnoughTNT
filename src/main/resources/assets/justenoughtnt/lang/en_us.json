@@ -9,7 +9,6 @@
   "block.justenoughtnt.tnt_x1k": "TNT x1000",
   "block.justenoughtnt.drain_tnt": "Drain TNT",
   "block.justenoughtnt.drain_tnt_x5": "Drain TNT x5",
-
   "block.justenoughtnt.jumping_tnt": "Jumping TNT",
   "block.justenoughtnt.one_jump_tnt": "One Jumping TNT",
   "block.justenoughtnt.russian_roulette_tnt": "Russian Roulette TNT",
@@ -20,10 +19,8 @@
   "block.justenoughtnt.circle_tnt": "Circle TNT",
   "block.justenoughtnt.cube_tnt": "Cube TNT",
   "block.justenoughtnt.fuse_tnt": "Fuse TNT",
-
   "block.justenoughtnt.sulfur_ore": "Sulfur Ore",
   "block.justenoughtnt.deepslate_sulfur_ore": "Deepslate Sulfur Ore",
-
   "item.justenoughtnt.sulfur_dust": "Sulfur Dust",
   "itemGroup.justenoughtnt.main": "Just Enough TNT"
 }

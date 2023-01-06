@@ -13,13 +13,18 @@ import net.minecraftforge.common.Tags;
 public class OreMinerExplosion extends Explosion {
 
     public OreMinerExplosion(Level world, BlockPos pos, Entity source, float radius, double dropChance,
-            double randomness) {
+                             double randomness) {
         super(world, pos, source, radius, dropChance, randomness);
     }
 
     public OreMinerExplosion(Level world, BlockPos pos, Entity source, float radius, double dropChance,
-            double randomness, int perTick) {
+                             double randomness, int perTick) {
         super(world, pos, source, radius, dropChance, randomness, perTick);
+    }
+
+    @Override
+    public void modifyEntities() {
+        // do nothing
     }
 
     @Override
@@ -42,9 +47,8 @@ public class OreMinerExplosion extends Explosion {
         BlockPos playerPos = new BlockPos(x, y + 2, z);
 
         Block block = world.getBlockState(pos).getBlock();
-        if (block instanceof BaseTNTBlock) {
+        if (block instanceof BaseTNTBlock tntBlock) {
             // it is one of our tnt blocks
-            BaseTNTBlock tntBlock = (BaseTNTBlock) block;
             tntBlock.wasExplodedByJET(world, pos, (LivingEntity) this.getSource());
         } else {
             // set the block to air
@@ -57,11 +61,6 @@ public class OreMinerExplosion extends Explosion {
 
         }
 
-    }
-
-    @Override
-    public void modifyEntities() {
-        // do nothing
     }
 
 }

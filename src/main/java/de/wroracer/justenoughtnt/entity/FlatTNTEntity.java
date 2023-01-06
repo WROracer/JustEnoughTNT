@@ -12,7 +12,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 
 public class FlatTNTEntity extends TNTEntity {
-    private HashMap<BlockPos, FlatExplosion> explosions;
+    private final HashMap<BlockPos, FlatExplosion> explosions;
+
     public FlatTNTEntity(EntityType<? extends Entity> entityType, Level level) {
         super(entityType, level);
         explosions = new HashMap<BlockPos, FlatExplosion>();

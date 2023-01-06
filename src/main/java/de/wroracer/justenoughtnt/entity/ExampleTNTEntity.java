@@ -14,6 +14,7 @@ public class ExampleTNTEntity extends TNTEntity {
     public ExampleTNTEntity(Level world, double x, double y, double z, LivingEntity igniter) {
         super(ModEntities.EXAMPLE_TNT.get(), world, x, y, z, igniter);
     }
+
     public ExampleTNTEntity(EntityType<? extends TNTEntity> entityType, Level level) {
         super(entityType, level);
         this.blocksBuilding = true;

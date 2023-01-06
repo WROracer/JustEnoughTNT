@@ -21,21 +21,21 @@ public class TNTEntity extends Entity {
     @Nullable
     private LivingEntity owner;
 
-    public TNTEntity(EntityType<? extends Entity> entityType, Level level) {
-        super(entityType, level);
-        this.blocksBuilding = true;
-    }
-
     public TNTEntity(EntityType<? extends Entity> entityType, Level level, double x, double y, double z, @Nullable LivingEntity livingEntity) {
         this(entityType, level);
         this.setPos(x, y, z);
-        double d0 = level.random.nextDouble() * (double)((float)Math.PI * 2F);
-        this.setDeltaMovement(-Math.sin(d0) * 0.02D, (double)0.2F, -Math.cos(d0) * 0.02D);
+        double d0 = level.random.nextDouble() * (double) ((float) Math.PI * 2F);
+        this.setDeltaMovement(-Math.sin(d0) * 0.02D, 0.2F, -Math.cos(d0) * 0.02D);
         this.setFuse(80);
         this.xo = x;
         this.yo = y;
         this.zo = z;
         this.owner = livingEntity;
+    }
+
+    public TNTEntity(EntityType<? extends Entity> entityType, Level level) {
+        super(entityType, level);
+        this.blocksBuilding = true;
     }
 
     public void setVelocity(double x, double y, double z) {
@@ -44,43 +44,6 @@ public class TNTEntity extends Entity {
 
     protected void defineSynchedData() {
         this.entityData.define(DATA_FUSE_ID, 80);
-    }
-
-    protected Entity.MovementEmission getMovementEmission() {
-        return Entity.MovementEmission.NONE;
-    }
-
-    public boolean isPickable() {
-        return !this.isRemoved();
-    }
-
-    protected void addAdditionalSaveData(CompoundTag p_32097_) {
-        p_32097_.putShort("Fuse", (short)this.getFuse());
-    }
-
-    protected void readAdditionalSaveData(CompoundTag p_32091_) {
-        this.setFuse(p_32091_.getShort("Fuse"));
-    }
-
-    @Nullable
-    public LivingEntity getOwner() {
-        return this.owner;
-    }
-
-    protected float getEyeHeight(Pose p_32088_, EntityDimensions p_32089_) {
-        return 0.15F;
-    }
-
-    public void setFuse(int p_32086_) {
-        this.entityData.set(DATA_FUSE_ID, p_32086_);
-    }
-
-    public int getFuse() {
-        return this.entityData.get(DATA_FUSE_ID);
-    }
-
-    public Packet<?> getAddEntityPacket() {
-        return new ClientboundAddEntityPacket(this);
     }
 
     @Override
@@ -113,17 +76,54 @@ public class TNTEntity extends Entity {
 
     }
 
-    public void explode(){
+    protected Entity.MovementEmission getMovementEmission() {
+        return Entity.MovementEmission.NONE;
+    }
+
+    public boolean isPickable() {
+        return !this.isRemoved();
+    }
+
+    protected void readAdditionalSaveData(CompoundTag p_32091_) {
+        this.setFuse(p_32091_.getShort("Fuse"));
+    }
+
+    protected void addAdditionalSaveData(CompoundTag p_32097_) {
+        p_32097_.putShort("Fuse", (short) this.getFuse());
+    }
+
+    protected float getEyeHeight(Pose p_32088_, EntityDimensions p_32089_) {
+        return 0.15F;
+    }
+
+    public Packet<?> getAddEntityPacket() {
+        return new ClientboundAddEntityPacket(this);
+    }
+
+    public int getFuse() {
+        return this.entityData.get(DATA_FUSE_ID);
+    }
+
+    public void setFuse(int p_32086_) {
+        this.entityData.set(DATA_FUSE_ID, p_32086_);
+    }
+
+    public void explode() {
         float f = 4.0F;
         this.level.explode(this, this.getX(), this.getY(0.0625D), this.getZ(), 4.0F, Explosion.BlockInteraction.BREAK);
     }
 
-    public BlockPos getPos() {
-        return new BlockPos(this.getX(), this.getY(), this.getZ());
+    @Nullable
+    public LivingEntity getOwner() {
+        return this.owner;
     }
 
     public TNTEntity setOwner(@Nullable LivingEntity owner) {
         this.owner = owner;
         return this;
+    }
+
+    public BlockPos getPos() {
+        return new BlockPos(this.getX(), this.getY(), this.getZ());
     }
 }

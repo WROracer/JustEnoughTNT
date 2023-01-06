@@ -1,7 +1,5 @@
 package de.wroracer.justenoughtnt.util;
 
-import java.util.ArrayList;
-
 import de.wroracer.justenoughtnt.JustEnoughTNT;
 import de.wroracer.justenoughtnt.block.BaseTNTBlock;
 import net.minecraft.core.BlockPos;
@@ -16,6 +14,8 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
+import java.util.ArrayList;
+
 public class Explosion {
 
     private Level world;
@@ -27,7 +27,7 @@ public class Explosion {
 
     private int perTick;
     private int currentTick;
-    private ArrayList<ArrayList<BlockPos>> chunkBlocks;
+    private final ArrayList<ArrayList<BlockPos>> chunkBlocks;
 
     public Explosion(Level world, BlockPos pos, Entity source, float radius, double dropChance, double randomness) {
         this.world = world;
@@ -43,7 +43,7 @@ public class Explosion {
     }
 
     public Explosion(Level world, BlockPos pos, Entity source, float radius, double dropChance, double randomness,
-            int perTick) {
+                     int perTick) {
         this.world = world;
         this.pos = pos;
         this.source = source;
@@ -106,6 +106,30 @@ public class Explosion {
         return blocks;
     }
 
+    public void modifyEntities() {
+        ArrayList<Entity> entities = damageEntities();
+        for (Entity entity : entities) {
+            Vec3 newVelocity = getEntityVelocity(entity);
+            Vec3 oldVelocity = entity.getDeltaMovement();
+            entity.setDeltaMovement(oldVelocity.add(newVelocity));
+        }
+    }
+
+    private void modifyWorld(ArrayList<BlockPos> blocks) {
+        // remove blocks
+        for (BlockPos blockPos : blocks) {
+            destroyBlock(blockPos);
+        }
+
+    }
+
+    public boolean shouldDestroy(BlockPos pos) {
+        Block block = world.getBlockState(pos).getBlock();
+        boolean isDestructable = block == Blocks.BEDROCK || block == Blocks.AIR;
+
+        return !isDestructable || liquidCheck(world.getBlockState(pos));
+    }
+
     public ArrayList<BlockPos> roundOrder(ArrayList<BlockPos> blocks) {
         ArrayList<DistanceStorage> distances = new ArrayList<DistanceStorage>();
         ArrayList<BlockPos> rounded = new ArrayList<BlockPos>();
@@ -130,38 +154,6 @@ public class Explosion {
         }
 
         return rounded;
-    }
-
-    public boolean tick() {
-        if (perTick <= 0) {
-            throw new IllegalStateException("Tried to tick explosion when the explosion is set to explode at once");
-        }
-
-        if (currentTick == chunkBlocks.size()) {
-            this.explosionFinished();
-            return true;
-        }
-
-        currentTick++;
-        ArrayList<BlockPos> blocks = chunkBlocks.get(currentTick - 1);
-
-        modifyWorld(blocks);
-        // chunkBlocks.remove(blocks);
-
-        if (currentTick >= chunkBlocks.size()) {
-            this.explosionFinished();
-            return true;
-        }
-        return false;
-    }
-
-    public void modifyEntities() {
-        ArrayList<Entity> entities = damageEntities();
-        for (Entity entity : entities) {
-            Vec3 newVelocity = getEntityVelocity(entity);
-            Vec3 oldVelocity = entity.getDeltaMovement();
-            entity.setDeltaMovement(oldVelocity.add(newVelocity));
-        }
     }
 
     private ArrayList<Entity> damageEntities() {
@@ -189,23 +181,6 @@ public class Explosion {
         return finalEntities;
     }
 
-    private void modifyWorld(ArrayList<BlockPos> blocks) {
-        // remove blocks
-        for (BlockPos blockPos : blocks) {
-            destroyBlock(blockPos);
-        }
-
-    }
-
-    public double getEntityDistance(Entity entity) {
-        int x = entity.getBlockX();
-        int y = entity.getBlockY();
-        int z = entity.getBlockZ();
-        double distance = Math
-                .sqrt(Math.pow(x - pos.getX(), 2) + Math.pow(y - pos.getY(), 2) + Math.pow(z - pos.getZ(), 2));
-        return distance;
-    }
-
     public Vec3 getEntityVelocity(Entity entity) {
         // move away from the direction of the explosion
         double distanceFromExplosion = getEntityDistance(entity);
@@ -222,32 +197,11 @@ public class Explosion {
         return new Vec3(x, y, z);
     }
 
-    public double getEntityDamage(double distance) {
-        // the larger the distance, the smaller the damage. minimum damage is 1 at radius
-        return Math.max(1, (radius - distance));
-
-    }
-
-    public boolean shouldDestroy(BlockPos pos) {
-        Block block = world.getBlockState(pos).getBlock();
-        boolean isDestructable = block == Blocks.BEDROCK || block == Blocks.AIR;
-
-        return !isDestructable || liquidCheck(world.getBlockState(pos));
-    }
-
-    private boolean liquidCheck(BlockState blockState) {
-        Material material = blockState.getMaterial();
-        boolean isDrainable = material.isLiquid() || material == Material.WATER_PLANT
-                || material == Material.REPLACEABLE_WATER_PLANT;
-        return isDrainable;
-    }
-
     public void destroyBlock(BlockPos pos) {
 
         Block block = world.getBlockState(pos).getBlock();
-        if (block instanceof BaseTNTBlock) {
+        if (block instanceof BaseTNTBlock tntBlock) {
             // it is one of our tnt blocks
-            BaseTNTBlock tntBlock = (BaseTNTBlock) block;
             tntBlock.wasExplodedByJET(world, pos, (LivingEntity) source);
         } else {
             if (liquidCheck(world.getBlockState(pos))) {
@@ -259,6 +213,51 @@ public class Explosion {
             }
         }
 
+    }
+
+    private boolean liquidCheck(BlockState blockState) {
+        Material material = blockState.getMaterial();
+        boolean isDrainable = material.isLiquid() || material == Material.WATER_PLANT
+                || material == Material.REPLACEABLE_WATER_PLANT;
+        return isDrainable;
+    }
+
+    public double getEntityDistance(Entity entity) {
+        int x = entity.getBlockX();
+        int y = entity.getBlockY();
+        int z = entity.getBlockZ();
+        double distance = Math
+                .sqrt(Math.pow(x - pos.getX(), 2) + Math.pow(y - pos.getY(), 2) + Math.pow(z - pos.getZ(), 2));
+        return distance;
+    }
+
+    public double getEntityDamage(double distance) {
+        // the larger the distance, the smaller the damage. minimum damage is 1 at radius
+        return Math.max(1, (radius - distance));
+
+    }
+
+    public boolean tick() {
+        if (perTick <= 0) {
+            throw new IllegalStateException("Tried to tick explosion when the explosion is set to explode at once");
+        }
+
+        if (currentTick == chunkBlocks.size()) {
+            this.explosionFinished();
+            return true;
+        }
+
+        currentTick++;
+        ArrayList<BlockPos> blocks = chunkBlocks.get(currentTick - 1);
+
+        modifyWorld(blocks);
+        // chunkBlocks.remove(blocks);
+
+        if (currentTick >= chunkBlocks.size()) {
+            this.explosionFinished();
+            return true;
+        }
+        return false;
     }
 
     public void explosionFinished() {

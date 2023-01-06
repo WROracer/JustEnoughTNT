@@ -28,7 +28,7 @@ public class TNTX500Entity extends TNTEntity {
         BlockPos pos = getPos();
 
         if (!explosions.containsKey(pos)) {
-            explosions.put(pos, new Explosion(getLevel(), pos,getOwner(), 67, 0D, 2D, 1000)); //max 1000 blocks per tick
+            explosions.put(pos, new Explosion(getLevel(), pos, getOwner(), 67, 0D, 2D, 1000)); //max 1000 blocks per tick
         }
 
         Explosion explosion = this.explosions.get(pos);

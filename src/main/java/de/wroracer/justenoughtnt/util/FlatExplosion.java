@@ -1,13 +1,13 @@
 package de.wroracer.justenoughtnt.util;
 
-import java.util.ArrayList;
-
 import de.wroracer.justenoughtnt.JustEnoughTNT;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+
+import java.util.ArrayList;
 
 public class FlatExplosion extends Explosion {
 
@@ -16,20 +16,8 @@ public class FlatExplosion extends Explosion {
     }
 
     public FlatExplosion(Level world, BlockPos pos, Entity source, float radius, double dropChance, double randomness,
-            int perTick) {
+                         int perTick) {
         super(world, pos, source, radius, dropChance, randomness, perTick);
-    }
-
-    @Override
-    public void modifyEntities() {
-        // do nothing
-    }
-
-    @Override
-    public boolean shouldDestroy(BlockPos pos) {
-        Block block = this.getLevel().getBlockState(pos).getBlock();
-        boolean isDestructable = block == Blocks.BEDROCK || block == Blocks.AIR;
-        return !isDestructable && this.getPos().getY() <= pos.getY();
     }
 
     @Override
@@ -55,6 +43,18 @@ public class FlatExplosion extends Explosion {
         blocks = this.roundOrder(blocks);
         JustEnoughTNT.LOGGER.info("Blocks: " + blocks.size());
         return blocks;
+    }
+
+    @Override
+    public void modifyEntities() {
+        // do nothing
+    }
+
+    @Override
+    public boolean shouldDestroy(BlockPos pos) {
+        Block block = this.getLevel().getBlockState(pos).getBlock();
+        boolean isDestructable = block == Blocks.BEDROCK || block == Blocks.AIR;
+        return !isDestructable && this.getPos().getY() <= pos.getY();
     }
 
 }

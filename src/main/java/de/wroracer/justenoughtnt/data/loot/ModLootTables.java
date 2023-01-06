@@ -23,11 +23,6 @@ public class ModLootTables extends LootTableProvider {
     }
 
     @Override
-    public String getName() {
-        return "Just Enough TNT - Loot Tables";
-    }
-
-    @Override
     protected List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> getTables() {
         return ImmutableList.of(
                 Pair.of(ModBlockLootTables::new, LootContextParamSets.BLOCK)
@@ -40,5 +35,10 @@ public class ModLootTables extends LootTableProvider {
     @Override
     protected void validate(Map<ResourceLocation, LootTable> map, ValidationContext validationtracker) {
         map.forEach((id, table) -> LootTables.validate(validationtracker, id, table));
+    }
+
+    @Override
+    public String getName() {
+        return "Just Enough TNT - Loot Tables";
     }
 }

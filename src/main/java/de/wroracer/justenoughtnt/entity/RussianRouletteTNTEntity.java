@@ -15,7 +15,7 @@ public class RussianRouletteTNTEntity extends TNTEntity {
         super(entityType, level);
     }
 
-    public RussianRouletteTNTEntity( Level level, double x, double y, double z, @Nullable LivingEntity livingEntity) {
+    public RussianRouletteTNTEntity(Level level, double x, double y, double z, @Nullable LivingEntity livingEntity) {
         super(ModEntities.RUSSIAN_ROULETTE_TNT.get(), level, x, y, z, livingEntity);
     }
 
@@ -28,7 +28,7 @@ public class RussianRouletteTNTEntity extends TNTEntity {
         int num = world.random.nextInt(8);
         // JustEnoughTNT.LOGGER.info(num);
         if (num == 0) {
-            PrimedTnt primedTnt = new PrimedTnt(level, pos.getX(), pos.getY(), pos.getZ(),getOwner());
+            PrimedTnt primedTnt = new PrimedTnt(level, pos.getX(), pos.getY(), pos.getZ(), getOwner());
             primedTnt.setFuse(0);
             getLevel().addFreshEntity(primedTnt);
             discard();

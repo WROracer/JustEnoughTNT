@@ -1,17 +1,15 @@
 package de.wroracer.justenoughtnt.entity;
 
-import java.util.HashMap;
-
-import org.jetbrains.annotations.Nullable;
-
 import de.wroracer.justenoughtnt.setup.ModEntities;
-import de.wroracer.justenoughtnt.util.Explosion;
 import de.wroracer.justenoughtnt.util.FarmExplosion;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.HashMap;
 
 public class FarmingTNTEntity extends TNTEntity {
     private HashMap<BlockPos, FarmExplosion> explosions;

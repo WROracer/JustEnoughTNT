@@ -10,18 +10,19 @@ import net.minecraft.world.level.Level;
 import java.util.HashMap;
 
 public class DrainTNTEntity extends TNTEntity {
+    private final HashMap<BlockPos, DrainExplosion> explosions;
+
     public DrainTNTEntity(Level world, double x, double y, double z, LivingEntity igniter) {
         super(ModEntities.DRAIN_TNT.get(), world, x, y, z, igniter);
         this.blocksBuilding = true;
         explosions = new HashMap<>();
     }
+
     public DrainTNTEntity(EntityType<? extends TNTEntity> entityType, Level level) {
         super(entityType, level);
         this.blocksBuilding = true;
         explosions = new HashMap<>();
     }
-
-    private HashMap<BlockPos, DrainExplosion> explosions;
 
     @Override
     public void explode() {
