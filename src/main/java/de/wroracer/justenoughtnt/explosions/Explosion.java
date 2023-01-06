@@ -43,7 +43,7 @@ public class Explosion {
     }
 
     public Explosion(Level world, BlockPos pos, Entity source, float radius, double dropChance, double randomness,
-                     int perTick) {
+            int perTick) {
         this.world = world;
         this.pos = pos;
         this.source = source;
@@ -156,8 +156,8 @@ public class Explosion {
         return rounded;
     }
 
-    private ArrayList<Entity> damageEntities() {
-        // damage entities
+    public ArrayList<Entity> getEntities() {
+
         ArrayList<Entity> finalEntities = new ArrayList<Entity>();
         ArrayList<Entity> entities = new ArrayList<Entity>();
         for (Entity entity : world.getEntities(source, new AABB(pos).inflate(radius, radius, radius))) {
@@ -165,20 +165,34 @@ public class Explosion {
                 entities.add(entity);
             }
         }
+
+        for (Entity entity : entities) {
+
+            double distance = getEntityDistance(entity);
+            if (distance <= radius) {
+                finalEntities.add(entity);
+            }
+        }
+
+        return finalEntities;
+
+    }
+
+    private ArrayList<Entity> damageEntities() {
+        // damage entities
+        ArrayList<Entity> entities = getEntities();
+
         for (Entity entity : entities) {
 
             double distance = getEntityDistance(entity);
             if (distance <= radius) {
                 double damage = getEntityDamage(distance);
-                finalEntities.add(entity);
-                // JustEnoughTNT.LOGGER.debug(
-                //         "Damageing: " + entity.getEncodeId() + " with damage: " + damage
-                //                 + "; distance: " + distance);
+
                 LivingEntity entity2 = (LivingEntity) entity;
                 entity2.hurt(DamageSource.explosion((LivingEntity) source), (float) damage);
             }
         }
-        return finalEntities;
+        return entities;
     }
 
     public Vec3 getEntityVelocity(Entity entity) {
