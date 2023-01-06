@@ -1,5 +1,8 @@
 package de.wroracer.justenoughtnt.explosions;
 
+import java.util.ArrayList;
+
+import de.wroracer.justenoughtnt.JustEnoughTNT;
 import de.wroracer.justenoughtnt.block.BaseTNTBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
@@ -8,26 +11,44 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 
 public class IslandExplosion extends Explosion {
 
     private final int yOffset;
+    private ArrayList<Entity> entities = new ArrayList<>();
 
     public IslandExplosion(Level world, BlockPos pos, Entity source, float radius,
-                           double randomness, int yOffset) {
+            double randomness, int yOffset) {
         super(world, pos, source, radius, 0, randomness);
         this.yOffset = yOffset;
     }
 
     public IslandExplosion(Level world, BlockPos pos, Entity source, float radius, double randomness,
-                           int perTick, int yOffset) {
+            int perTick, int yOffset) {
         super(world, pos, source, radius, 0, randomness, perTick);
         this.yOffset = yOffset;
     }
 
     @Override
     public void modifyEntities() {
-        // do nothing
+        entities = getEntities();
+        for (Entity entity : entities) {
+            Vec3 pos = entity.position();
+            entity.setPos(pos.x, pos.y + yOffset + 3, pos.z);
+            entity.setNoGravity(true);
+        }
+    }
+
+    @Override
+    public void explosionFinished() {
+
+        for (Entity entity : entities) {
+            entity.setNoGravity(false);
+            entity.fallDistance = 0;
+        }
+
+        JustEnoughTNT.LOGGER.info("Explosion finished");
     }
 
     @Override
