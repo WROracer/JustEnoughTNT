@@ -1,14 +1,9 @@
 package de.wroracer.justenoughtnt.entity;
 
-import java.util.HashMap;
-
-import org.jetbrains.annotations.Nullable;
-
 import de.wroracer.justenoughtnt.explosions.OreMinerExplosion;
 import de.wroracer.justenoughtnt.setup.ModBlocks;
 import de.wroracer.justenoughtnt.setup.ModEntities;
 import net.minecraft.core.BlockPos;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
@@ -17,10 +12,12 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.HashMap;
 
 public class OreMinerTNTEntity extends TNTEntity {
-    private HashMap<BlockPos, OreMinerExplosion> explosions;
+    private final HashMap<BlockPos, OreMinerExplosion> explosions;
 
     public OreMinerTNTEntity(EntityType<? extends Entity> entityType, Level level) {
         super(entityType, level);

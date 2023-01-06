@@ -19,16 +19,15 @@ import java.util.ArrayList;
 
 public class Explosion {
 
+    private final ArrayList<ArrayList<BlockPos>> chunkBlocks;
     private Level world;
     private BlockPos pos;
     private Entity source;
     private float radius;
     private double dropChance;
     private double randomness;
-
     private int perTick;
     private int currentTick;
-    private final ArrayList<ArrayList<BlockPos>> chunkBlocks;
 
     public Explosion(Level world, BlockPos pos, Entity source, float radius, double dropChance, double randomness) {
         this.world = world;

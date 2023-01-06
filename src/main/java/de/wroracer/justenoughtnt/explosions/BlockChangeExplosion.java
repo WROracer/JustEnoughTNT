@@ -10,24 +10,18 @@ import net.minecraft.world.level.block.AirBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.Tags;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 
 public class BlockChangeExplosion extends Explosion {
 
     private HashMap<Block, Block> blockChangeMap = new HashMap<>();
 
     public BlockChangeExplosion(Level world, BlockPos pos, Entity source, float radius, double dropChance,
-            double randomness) {
+                                double randomness) {
         super(world, pos, source, radius, dropChance, randomness);
-        blockChangeMap = new HashMap<>();
-        fillHashMap();
-    }
-
-    public BlockChangeExplosion(Level world, BlockPos pos, Entity source, float radius, double dropChance,
-            double randomness, int perTick) {
-        super(world, pos, source, radius, dropChance, randomness, perTick);
         blockChangeMap = new HashMap<>();
         fillHashMap();
     }
@@ -49,6 +43,18 @@ public class BlockChangeExplosion extends Explosion {
             blockChangeMap.put(blocks.get(i), blocks1.get(i));
         }
         System.out.println(blockChangeMap);
+    }
+
+    public BlockChangeExplosion(Level world, BlockPos pos, Entity source, float radius, double dropChance,
+                                double randomness, int perTick) {
+        super(world, pos, source, radius, dropChance, randomness, perTick);
+        blockChangeMap = new HashMap<>();
+        fillHashMap();
+    }
+
+    @Override
+    public void modifyEntities() {
+        // do nothing
     }
 
     @Override
@@ -86,11 +92,6 @@ public class BlockChangeExplosion extends Explosion {
 
         }
 
-    }
-
-    @Override
-    public void modifyEntities() {
-        // do nothing
     }
 
 }

@@ -8,20 +8,19 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
 
 public class IslandExplosion extends Explosion {
 
-    private int yOffset;
+    private final int yOffset;
 
     public IslandExplosion(Level world, BlockPos pos, Entity source, float radius,
-            double randomness, int yOffset) {
+                           double randomness, int yOffset) {
         super(world, pos, source, radius, 0, randomness);
         this.yOffset = yOffset;
     }
 
     public IslandExplosion(Level world, BlockPos pos, Entity source, float radius, double randomness,
-            int perTick, int yOffset) {
+                           int perTick, int yOffset) {
         super(world, pos, source, radius, 0, randomness, perTick);
         this.yOffset = yOffset;
     }
@@ -36,9 +35,8 @@ public class IslandExplosion extends Explosion {
 
         Level world = getLevel();
         Block block = world.getBlockState(pos).getBlock();
-        if (block instanceof BaseTNTBlock) {
+        if (block instanceof BaseTNTBlock tntBlock) {
             // it is one of our tnt blocks
-            BaseTNTBlock tntBlock = (BaseTNTBlock) block;
             tntBlock.wasExplodedByJET(world, pos, (LivingEntity) getSource());
         } else {
             // world.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
