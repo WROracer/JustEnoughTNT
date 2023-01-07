@@ -29,7 +29,7 @@ public class DrainTNTEntity extends TNTEntity {
         BlockPos pos = this.getPos();
 
         if (!explosions.containsKey(pos)) {
-            explosions.put(pos, new DrainExplosion(this.getLevel(), pos, this.getOwner(), 45f, 0.001D, 2D, 3000)); //max 3000 blocks per tick
+            explosions.put(pos, new DrainExplosion(this.getLevel(), pos, this.getOwner(), 45, 50000000, 0.001D, 2D, 3000)); //max 3000 blocks per tick
         }
 
         DrainExplosion explosion = this.explosions.get(pos);

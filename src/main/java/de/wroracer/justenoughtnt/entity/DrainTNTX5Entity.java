@@ -29,7 +29,7 @@ public class DrainTNTX5Entity extends TNTEntity {
     public void explode() {
         BlockPos pos = getPos();
         if (!explosions.containsKey(pos)) {
-            explosions.put(pos, new DrainExplosion(getLevel(), pos, getOwner(), 100, 0.001D, 2D, 3000)); //max 3000 blocks per tick
+            explosions.put(pos, new DrainExplosion(getLevel(), pos, getOwner(), 100, 50000000, 0.001D, 2D, 3000)); //max 3000 blocks per tick
         }
 
         DrainExplosion explosion = this.explosions.get(pos);
