@@ -22,11 +22,11 @@ public class Explosion {
 
     private final ArrayList<ArrayList<BlockPos>> chunkBlocks;
     private Level world;
-    private BlockPos pos;
+    protected BlockPos pos;
     private Entity source;
     private float radius;
     private double dropChance;
-    private double randomness;
+    protected double randomness;
     private int perTick;
     private int currentTick;
 
@@ -94,7 +94,8 @@ public class Explosion {
             for (int y = -(int) radius; y <= radius; y++) {
                 for (int z = -(int) radius; z <= radius; z++) {
                     BlockPos blockPos = new BlockPos(pos.getX() + x, pos.getY() + y, pos.getZ() + z);
-                    double distance = Math.sqrt(x * x + y * y + z * z);
+                    // double distance = Math.sqrt(x * x + y * y + z * z);
+                    double distance = distance(pos, blockPos);
                     if (distance <= radius + randomness * (Math.random() - 0.5)) {
                         if (shouldDestroy(blockPos))
                             blocks.add(blockPos);
@@ -136,8 +137,9 @@ public class Explosion {
         ArrayList<BlockPos> rounded = new ArrayList<BlockPos>();
 
         for (BlockPos blockPos : blocks) {
-            double distance = Math.sqrt(Math.pow(blockPos.getX() - pos.getX(), 2)
-                    + Math.pow(blockPos.getY() - pos.getY(), 2) + Math.pow(blockPos.getZ() - pos.getZ(), 2));
+            // double distance = Math.sqrt(Math.pow(blockPos.getX() - pos.getX(), 2)
+            //         + Math.pow(blockPos.getY() - pos.getY(), 2) + Math.pow(blockPos.getZ() - pos.getZ(), 2));
+            double distance = distance(pos, blockPos);
             distances.add(new DistanceStorage(distance, blockPos));
         }
 
@@ -199,10 +201,11 @@ public class Explosion {
     public Vec3 getEntityVelocity(Entity entity) {
         // move away from the direction of the explosion
         double distanceFromExplosion = getEntityDistance(entity);
-        double x = entity.getBlockX() - pos.getX();
-        double y = entity.getBlockY() - pos.getY();
-        double z = entity.getBlockZ() - pos.getZ();
-        double distance = Math.sqrt(x * x + y * y + z * z);
+        double x = entity.getX() - pos.getX();
+        double y = entity.getY() - pos.getY();
+        double z = entity.getZ() - pos.getZ();
+        // double distance = Math.sqrt(x * x + y * y + z * z);
+        double distance = distance(pos, entity.getX(), entity.getY(), entity.getZ());
         x /= distance;
         y /= distance;
         z /= distance;
@@ -237,15 +240,6 @@ public class Explosion {
         return isDrainable;
     }
 
-    public double getEntityDistance(Entity entity) {
-        int x = entity.getBlockX();
-        int y = entity.getBlockY();
-        int z = entity.getBlockZ();
-        double distance = Math
-                .sqrt(Math.pow(x - pos.getX(), 2) + Math.pow(y - pos.getY(), 2) + Math.pow(z - pos.getZ(), 2));
-        return distance;
-    }
-
     public double getEntityDamage(double distance) {
         // the larger the distance, the smaller the damage. minimum damage is 1 at radius
         return Math.max(1, (radius - distance));
@@ -273,6 +267,42 @@ public class Explosion {
             return true;
         }
         return false;
+    }
+
+    protected double getEntityDistance(Entity entity) {
+        return distance(pos, entity.getX(), entity.getY(), entity.getZ());
+    }
+
+    protected double getEntityDistance(Entity entity, BlockPos position) {
+        return distance(position, entity.getX(), entity.getY(), entity.getZ());
+    }
+
+    protected double distance(BlockPos pos, BlockPos pos2) {
+        return distance(pos.getX(), pos.getY(), pos.getZ(), pos2.getX(), pos2.getY(), pos2.getZ());
+    }
+
+    protected double distance(BlockPos pos, int x2, int y2, int z2) {
+        return distance(pos.getX(), pos.getY(), pos.getZ(), (double) x2, (double) y2, (double) z2);
+    }
+
+    protected double distance(BlockPos pos, double x2, double y2, double z2) {
+        return distance(pos.getX(), pos.getY(), pos.getZ(), x2, y2, z2);
+    }
+
+    protected double distance(int x, int y, int z, int x2, int y2, int z2) {
+        return distance((double) x, (double) y, (double) z, (double) x2, (double) y2, (double) z2);
+    }
+
+    protected double distance(int x, int y, int x2, int y2) {
+        return distance((double) x, (double) y, 0, (double) x2, (double) y2, 0);
+    }
+
+    protected double distance(double x, double y, double x2, double y2) {
+        return distance(x, y, 0, x2, y2, 0);
+    }
+
+    protected double distance(double x, double y, double z, double x2, double y2, double z2) {
+        return Math.sqrt(Math.pow(x - x2, 2) + Math.pow(y - y2, 2) + Math.pow(z - z2, 2));
     }
 
     public void explosionFinished() {
