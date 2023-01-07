@@ -13,7 +13,7 @@ import net.minecraft.world.level.material.Material;
 public class DrainExplosion extends Explosion {
 
     public DrainExplosion(Level world, BlockPos pos, Entity source, float radius, double dropChance, double randomness,
-                          int inTicks) {
+            int inTicks) {
         super(world, pos, source, radius, dropChance, randomness, inTicks);
     }
 

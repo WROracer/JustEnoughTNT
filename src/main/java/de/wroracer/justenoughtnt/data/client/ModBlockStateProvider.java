@@ -44,7 +44,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlock(ModBlocks.CUBE_TNT.get(), getTopSideBottomsModel("cube_tnt"));
         simpleBlock(ModBlocks.FUSE_TNT.get(), getTopSideBottomsModel("fuse_tnt"));
         simpleBlock(ModBlocks.BLOCK_CHANGE_TNT.get(), getTopSideBottomsModel("block_change_tnt"));
-        // simpleBlock(ModBlocks.FARMING_TNT.get(), getTopSideBottomsModel("farming_tnt"));
+        simpleBlock(ModBlocks.FARMING_TNT.get(), getTopSideBottomsModel("farming_tnt"));
+        simpleBlock(ModBlocks.ISLAND_TNT.get(), getTopSideBottomsModel("island_tnt"));
 
         //simpleBlock(ModBlocks.METAL_PRESS.get(),models().cube("metal_press",modId("block/metal_press_bottom"),modId("block/metal_press_top"),modId("block/metal_press_side"),modId("block/metal_press_side"),modId("block/metal_press_side"),modId("block/metal_press_side")));
 
