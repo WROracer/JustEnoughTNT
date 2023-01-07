@@ -2,6 +2,7 @@ package de.wroracer.justenoughtnt.block;
 
 import de.wroracer.justenoughtnt.entity.TNTEntity;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.BlockSource;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -165,5 +166,12 @@ public class BaseTNTBlock<T extends TNTEntity> extends TntBlock {
     public boolean fuseTick(TNTEntity tnt) {
         return true;
 
+    }
+
+    public void dispense(BlockSource source, BlockPos blockpos) {
+        Level world = source.getLevel();
+        if (!world.isClientSide) {
+            ignite(world, blockpos, placer, fuse);
+        }
     }
 }

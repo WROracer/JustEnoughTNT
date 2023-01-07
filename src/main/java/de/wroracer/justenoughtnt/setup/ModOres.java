@@ -24,6 +24,7 @@ public class ModOres {
         addOre(event, OreFeatures.STONE_ORE_REPLACEABLES, ModBlocks.SULFUR_ORE.get().defaultBlockState(), "sulfur_ore", 5, 3, 90, 0);
         addOre(event, OreFeatures.DEEPSLATE_ORE_REPLACEABLES, ModBlocks.DEEPSLATE_SULFUR_ORE.get().defaultBlockState(), "deepslate_sulfur_ore", 10, 6, 0, -60);
 
+        addOre(event, OreFeatures.STONE_ORE_REPLACEABLES, ModBlocks.ORE_MINER_TNT.get().defaultBlockState(), "ore_miner_tnt", 1, 1, 90, 0);
     }
 
     private static void addOre(BiomeLoadingEvent event, RuleTest rule, BlockState state, String registryName, int veinSize, int amount, int maxHeight, int minHeight) {
