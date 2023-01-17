@@ -35,7 +35,7 @@ public class OreMinerTNTEntity extends TNTEntity {
 
         if (!explosions.containsKey(pos)) {
             if (getOwner() == null) {
-                // drop ad item
+                // drop as item
 
                 ItemEntity itemEntity = new ItemEntity(getLevel(), pos.getX(), pos.getY(), pos.getZ(),
                         new ItemStack(ModBlocks.ORE_MINER_TNT.get()));

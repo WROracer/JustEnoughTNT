@@ -16,12 +16,14 @@ import javax.annotation.Nullable;
 
 public class TNTEntity extends Entity {
 
-    private static final EntityDataAccessor<Integer> DATA_FUSE_ID = SynchedEntityData.defineId(TNTEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> DATA_FUSE_ID = SynchedEntityData.defineId(TNTEntity.class,
+            EntityDataSerializers.INT);
     private static final int DEFAULT_FUSE_TIME = 80;
     @Nullable
     private LivingEntity owner;
 
-    public TNTEntity(EntityType<? extends Entity> entityType, Level level, double x, double y, double z, @Nullable LivingEntity livingEntity) {
+    public TNTEntity(EntityType<? extends Entity> entityType, Level level, double x, double y, double z,
+            @Nullable LivingEntity livingEntity) {
         this(entityType, level);
         this.setPos(x, y, z);
         double d0 = level.random.nextDouble() * (double) ((float) Math.PI * 2F);
